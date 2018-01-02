@@ -10,7 +10,7 @@ from light_classification.tl_classifier import TLClassifier
 import cv2
 import yaml
 import tf
-
+import time
 import tensorflow as tfl
 import numpy as np
 import os
@@ -178,6 +178,7 @@ class TLDetector(object):
 
 
         ### Perform Model Prediction
+        time1 = time.time()
         with detection_graph.as_default():
             with tfl.Session(graph=detection_graph) as sess:
                 image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
@@ -197,11 +198,11 @@ class TLDetector(object):
                     [detection_boxes, detection_scores, detection_classes, num_detections],
                     feed_dict={image_tensor: image_np_expanded})
                 rospy.logerr('Number of detections: {}'.format(num))
-                rospy.logerr('Classes:')
-                rospy.logerr(classes)
-                rospy.logerr('scores:')
-                rospy.logerr(scores)
-                
+                #rospy.logerr('Classes:')
+                #rospy.logerr(classes)
+                #rospy.logerr('scores:')
+                #rospy.logerr(scores)
+                rospy.logerr(time.time() - time1)
 
         #light_wp, state = self.process_traffic_lights()
 

@@ -35,7 +35,7 @@
                   <caret line="75" column="26" lean-forward="true" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
                   <folding>
                     <element signature="e#22#34#0" expanded="true" />
-                    <marker date="1514901266370" expanded="true" signature="6675:7469" ph="..." />
+                    <marker date="1514904935785" expanded="true" signature="6751:7545" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -113,8 +113,8 @@
           <file leaf-file-name="tl_detector.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="461">
-                  <caret line="203" column="16" lean-forward="true" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
+                <state relative-caret-position="391">
+                  <caret line="200" column="16" lean-forward="false" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
                   <folding>
                     <element signature="e#22#34#0" expanded="true" />
                   </folding>
@@ -153,8 +153,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="177" />
-    <option name="y" value="98" />
+    <option name="x" value="197" />
+    <option name="y" value="108" />
     <option name="width" value="1501" />
     <option name="height" value="839" />
   </component>
@@ -455,7 +455,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="177" y="98" width="1501" height="839" extended-state="0" />
+    <frame x="197" y="108" width="1501" height="839" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14478114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -881,8 +881,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="203" column="16" lean-forward="true" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
+        <state relative-caret-position="391">
+          <caret line="200" column="16" lean-forward="false" selection-start-line="200" selection-start-column="16" selection-end-line="200" selection-end-column="16" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
           </folding>
