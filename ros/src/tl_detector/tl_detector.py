@@ -24,10 +24,10 @@ from io import StringIO
 from matplotlib import pyplot as plt
 #from PIL import Image
 
-sys.path.append("..")
+#sys.path.append("..")
 
-from utils import label_map_util
-from utils import visualization_utils as vis_util
+#from utils import label_map_util
+#from utils import visualization_utils as vis_util
 
 
 STATE_COUNT_THRESHOLD = 3
