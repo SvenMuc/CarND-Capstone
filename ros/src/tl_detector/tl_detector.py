@@ -48,6 +48,7 @@ with detection_graph.as_default():
         od_graph_def.ParseFromString(serialized_graph)
         tfl.import_graph_def(od_graph_def, name='')
 
+'''
 cwd = os.getcwd()
 rospy.logwarn(cwd)
 rospy.logwarn(cwd)
@@ -64,6 +65,7 @@ rospy.logwarn(cwd)
 rospy.logwarn(cwd)
 rospy.logwarn(cwd)
 rospy.logwarn(cwd)
+'''
 
 STATE_COUNT_THRESHOLD = 3
 
@@ -138,7 +140,7 @@ class TLDetector(object):
         of times till we start using it. Otherwise the previous stable state is
         used.
         '''
-        '''
+        
         if self.state != state:
             self.state_count = 0
             self.state = state
@@ -150,9 +152,9 @@ class TLDetector(object):
         else:
             self.upcoming_red_light_pub.publish(Int32(self.last_wp))
         self.state_count += 1
-        '''
-        cwd = os.getcwd()
-        rospy.logerr(cwd)
+
+        #cwd = os.getcwd()
+        #rospy.logerr(cwd)
 
     def get_closest_waypoint(self, pose):
         """Identifies the closest path waypoint to the given position

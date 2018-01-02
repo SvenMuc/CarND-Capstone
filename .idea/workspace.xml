@@ -29,11 +29,11 @@
       <file leaf-file-name="tl_detector.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="154" column="21" lean-forward="false" selection-start-line="154" selection-start-column="21" selection-end-line="154" selection-end-column="21" />
+            <state relative-caret-position="1853">
+              <caret line="142" column="8" lean-forward="true" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="8" />
               <folding>
                 <element signature="e#22#34#0" expanded="true" />
-                <marker date="1514895878546" expanded="true" signature="3723:4516" ph="..." />
+                <marker date="1514896000195" expanded="true" signature="3731:4521" ph="..." />
               </folding>
             </state>
           </provider>
@@ -123,10 +123,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="827" />
-    <option name="y" value="130" />
+    <option name="x" value="479" />
+    <option name="y" value="67" />
     <option name="width" value="1501" />
-    <option name="height" value="813" />
+    <option name="height" value="839" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -261,7 +261,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="waypoint_updater" />
+              <option name="myItemId" value="tl_detector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,7 +377,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="827" y="130" width="1501" height="813" extended-state="0" />
+    <frame x="479" y="67" width="1501" height="839" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24175084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -635,7 +635,7 @@
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514895878546" expanded="true" signature="3723:4516" ph="..." />
+            <marker date="1514896000195" expanded="true" signature="3731:4521" ph="..." />
           </folding>
         </state>
       </provider>
@@ -654,7 +654,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514895878546" expanded="true" signature="3723:4516" ph="..." />
+            <marker date="1514896000195" expanded="true" signature="3731:4521" ph="..." />
           </folding>
         </state>
       </provider>
@@ -674,7 +674,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514895878546" expanded="true" signature="3723:4516" ph="..." />
+            <marker date="1514896000195" expanded="true" signature="3731:4521" ph="..." />
           </folding>
         </state>
       </provider>
@@ -805,11 +805,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="154" column="21" lean-forward="false" selection-start-line="154" selection-start-column="21" selection-end-line="154" selection-end-column="21" />
+        <state relative-caret-position="1853">
+          <caret line="142" column="8" lean-forward="true" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="8" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514895878546" expanded="true" signature="3723:4516" ph="..." />
+            <marker date="1514896000195" expanded="true" signature="3731:4521" ph="..." />
           </folding>
         </state>
       </provider>
