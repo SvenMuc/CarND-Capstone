@@ -11,8 +11,6 @@ import cv2
 import yaml
 import tf
 
-from google.protobuf import text_format
-
 import tensorflow as tfl
 import numpy as np
 import os
@@ -25,6 +23,11 @@ from collections import defaultdict
 from io import StringIO
 from matplotlib import pyplot as plt
 from PIL import Image as Img
+
+
+# Used in Label Mapping
+from google.protobuf import text_format
+import logging
 
 PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
 PATH_TO_LABELS = ""
