@@ -76,7 +76,7 @@ def load_image_into_numpy_array(image):
     im_width = image.width
     im_height = image.height
     (rows,cols,channels) = cv_image.shape
-    return np.array(cv_image).reshape(im_height, im_width, 3).astype(np.unit8)
+    return np.array(cv_image).reshape(im_height, im_width, 3).astype(np.uint8)
 
     #im_width = image.width
     #im_height = image.height
