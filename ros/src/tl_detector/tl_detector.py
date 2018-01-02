@@ -28,6 +28,8 @@ from PIL import Image as Img
 # Used in Label Mapping
 from google.protobuf import text_format
 import logging
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as vis_utils
 
 PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
 PATH_TO_LABELS = ""
@@ -140,7 +142,7 @@ class TLDetector(object):
         of times till we start using it. Otherwise the previous stable state is
         used.
         '''
-        
+
         if self.state != state:
             self.state_count = 0
             self.state = state
