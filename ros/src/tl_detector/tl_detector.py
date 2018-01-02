@@ -150,14 +150,18 @@ class TLDetector(object):
         self.camera_image = msg
         height = msg.height
         width = msg.width
+        data = msg.data
 
+        rospy.logerr(data)
         #rospy.logerr(height)    #600
         #rospy.logerr(width)     # 800
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
-        image_np = load_image_into_numpy_array(msg)
+        #image_np = load_image_into_numpy_array(msg)
 
-        
+
+
+
         ### Perform Model Prediction
         with detection_graph.as_default():
             with tfl.Session(graph=detection_graph) as sess:
