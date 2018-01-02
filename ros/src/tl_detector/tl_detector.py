@@ -64,11 +64,23 @@ def load_image_into_numpy_array_Original(image):
         (im_height, im_width, 3)).astype(np.unit8)
 
 
-def load_image_into_numpy_array(image):
+def load_image_into_numpy_array_Older(image):
     im_width = image.width
     im_height = image.height
     return np.array(image.data).reshape(
         (im_height, im_width, 3)).astype(np.unit8)
+
+def load_image_into_numpy_array(image):
+    bridge = CvBridge
+    cv_image = bridge.imgmsg_to_cv2(image, "bgr8")  #Might want a different Format
+
+
+    im_width = image.width
+    im_height = image.height
+    
+    #return np.array(image.data).reshape(
+    #    (im_height, im_width, 3)).astype(np.unit8)
+    return 1
 
 '''
 cwd = os.getcwd()
