@@ -56,6 +56,12 @@ categories = label_map_util.convert_label_map_to_categories(label_map, max_num_c
 category_index = label_map_util.create_category_index(categories)
 
 
+# Image Helper Code
+def load_image_into_numpy_array(image):
+    (im_width, im_height) = image.size
+    return np.array(image.getdata()).reshape(
+        (im_height, im_width, 3)).astype(np.unit8)
+
 '''
 cwd = os.getcwd()
 rospy.logwarn(cwd)
@@ -149,6 +155,7 @@ class TLDetector(object):
         used.
         '''
 
+        '''
         if self.state != state:
             self.state_count = 0
             self.state = state
@@ -163,6 +170,8 @@ class TLDetector(object):
 
         #cwd = os.getcwd()
         #rospy.logerr(cwd)
+        '''
+
 
     def get_closest_waypoint(self, pose):
         """Identifies the closest path waypoint to the given position
