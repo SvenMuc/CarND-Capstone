@@ -25,8 +25,8 @@ as well as to verify your TL classifier.
 TODO (for Yousuf and Aaron): Stopline location for each traffic light.
 '''
 
-LOOKAHEAD_WPS = 40  # Number of waypoints we will publish.
-STOP_LINE_THRESHOLD = 28.0  # Number of waypoints between the stop line and the traffic lights
+LOOKAHEAD_WPS = 50  # Number of waypoints we will publish.
+STOP_LINE_THRESHOLD = 30.0  # Number of waypoints between the stop line and the traffic lights
 MAX_ACCE = 1.0
 
 
@@ -112,11 +112,11 @@ class WaypointUpdater(object):
                 if self.red_traffic_light_ahead:
                     dist_to_stop_line = self.distance(self.base_waypoints.waypoints, self.closest_waypoint_idx,
                                                       self.red_traffic_light_waypoint_idx) - STOP_LINE_THRESHOLD
-                    # if dist_to_stop_line > 0:
-                    #     # acceleration = (final_v^2 - curr_v^2)/ (2 * distance)
-                    #     DECEL = (0 - self.current_velocity ** 2) / (2 * dist_to_stop_line)
-                    # else:
-                    #     DECEL = -3.0
+                    if dist_to_stop_line > 0:
+                        # acceleration = (final_v^2 - curr_v^2)/ (2 * distance)
+                        DECEL = (0 - self.current_velocity ** 2) / (2 * dist_to_stop_line)
+                    else:
+                        DECEL = -3.0
 
                 # Since our waypoints are sequential
                 # As soon as we find our first waypoint, we populate the rest of the list with the following waypoints
@@ -131,14 +131,16 @@ class WaypointUpdater(object):
                                 self.closest_waypoint_idx,
                                 self.red_traffic_light_waypoint_idx - self.closest_waypoint_idx,
                                 dist_to_stop_line))
-                        if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD):
+                        if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD*3):
                             # dist = self.distance(self.base_waypoints.waypoints, j_mod, j_mod + 2)
                             if self.current_velocity < 0.1:
                                 vel = 0.0
                             else:
-                                vel = self.current_velocity * min(1, (2 * dist_to_stop_line / (STOP_LINE_THRESHOLD)))
-                                # vel = math.sqrt((- (2 * DECEL * dist_to_stop_line))) - (j * MAX_ACCE)
-                                if vel < 0:
+                                if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD/3):
+                                    vel = self.current_velocity * min(1, (dist_to_stop_line / (STOP_LINE_THRESHOLD/3)))
+                                else:
+                                    vel = math.sqrt((- (2 * DECEL * dist_to_stop_line))) - (j * 0.1)
+                                if vel < 0.1:
                                     vel = 0.
                             # rospy.logdebug(
                             #     "Current velocity: {} Target velocity: {}".format(self.current_velocity, vel))
@@ -150,7 +152,6 @@ class WaypointUpdater(object):
                         else:
                             next_wp.twist.twist.linear.x = min(self.current_velocity + ((j + 1) * MAX_ACCE),
                                                                self.max_speed_mps)
-
                     else:
                         next_wp.twist.twist.linear.x = min((self.current_velocity + (j + 1) * MAX_ACCE),
                                                            self.max_speed_mps)
