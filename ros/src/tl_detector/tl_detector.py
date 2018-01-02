@@ -24,10 +24,25 @@ from io import StringIO
 from matplotlib import pyplot as plt
 from PIL import Image as Img
 
+PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
+PATH_TO_LABELS = ""
+NUM_CLASSES = 4
+
 #sys.path.append("..")
 
 #from utils import label_map_util
 #from utils import visualization_utils as vis_util
+
+
+### Load Frozen Graph
+detection_graph = tfl.Graph()
+with detection_graph.as_default():
+    od_graph_def = tf.GraphDef()
+    with tf.gfile.GFile(PATH_TO_FROZEN_MODEL, 'rb') as fid:
+        serialized_graph = fid.read()
+        od_graph_def.ParseFromString(serialized_graph)
+        tf.import_graph_def(od_graph_def, name='')
+
 
 
 STATE_COUNT_THRESHOLD = 3
@@ -89,6 +104,12 @@ class TLDetector(object):
         """
         self.has_image = True
         self.camera_image = msg
+
+        ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
+
+
+
+
         light_wp, state = self.process_traffic_lights()
 
         '''
