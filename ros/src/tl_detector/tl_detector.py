@@ -15,7 +15,7 @@ import os
 import six.moves.urllib as urllib
 import sys
 import tarfile
-impor zipfile
+import zipfile
 
 from collections import defaultdict
 from io import StringIO
