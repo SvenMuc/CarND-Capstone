@@ -11,7 +11,7 @@ import cv2
 import yaml
 import tf
 
-from google.protobuff import text_format
+from google.protobuf import text_format
 
 import tensorflow as tfl
 import numpy as np
