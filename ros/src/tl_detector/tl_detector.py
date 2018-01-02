@@ -71,7 +71,7 @@ def load_image_into_numpy_array_Older(image):
         (im_height, im_width, 3)).astype(np.unit8)
 
 def load_image_into_numpy_array(image):
-    bridge = CvBridge
+    bridge = CvBridge()
     cv_image = bridge.imgmsg_to_cv2(image, "bgr8")  #Might want a different Format
 
 
