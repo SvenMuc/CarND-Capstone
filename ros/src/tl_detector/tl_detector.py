@@ -140,8 +140,11 @@ class TLDetector(object):
         """
         self.has_image = True
         self.camera_image = msg
+        height = msg.height
+        width = msg.width
 
-        rospy.logerr(msg)
+        rospy.logerr(height)
+        rospy.logerr(width)
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
         ### Perform Model Prediction
