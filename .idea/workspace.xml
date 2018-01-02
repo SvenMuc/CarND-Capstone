@@ -2,7 +2,299 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e33c41b6-e1fa-4d6f-9f42-61d92a42e6ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/dogs_detections_output.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/example_cat.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/groupof_case_eval.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/kites_detections_output.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/nongroupof_case_eval.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/oid_bus_72e19c28aac34ed8.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/oid_monkey_3b4168c89cecbc5b.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/oxford_pet.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/tensorboard.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/tensorboard2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/img/tf-od-api-logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/bosch_green_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/bosch_green_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/bosch_red_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/bosch_red_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/bosch_yellow_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/bosch_yellow_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/image1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/image2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_green_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_green_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_no_tl_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_red_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_red_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_undefined_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_undefined_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_undefined_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_yellow_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/real_yellow_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_green_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_green_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_no_tl_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_red_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_red_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_red_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_undefined_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_yellow_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/sim_yellow_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_bosch_green_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_bosch_green_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_bosch_red_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_bosch_red_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_bosch_yellow_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_bosch_yellow_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_green_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_green_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_no_tl_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_red_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_red_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_undefined_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_undefined_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_undefined_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_yellow_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_real_yellow_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_green_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_green_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_no_tl_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_red_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_red_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_red_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_undefined_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_yellow_0.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_test_results/bbox_sim_yellow_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/grid_anchor_generator.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/grid_anchor_generator_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/multiple_grid_anchor_generator.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/multiple_grid_anchor_generator_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/faster_rcnn_box_coder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/faster_rcnn_box_coder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/keypoint_box_coder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/keypoint_box_coder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/mean_stddev_box_coder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/mean_stddev_box_coder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/square_box_coder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/box_coders/square_box_coder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/anchor_generator_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/anchor_generator_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/box_coder_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/box_coder_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/box_predictor_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/box_predictor_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/hyperparams_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/hyperparams_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/image_resizer_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/image_resizer_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/input_reader_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/input_reader_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/losses_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/losses_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/matcher_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/matcher_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/model_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/model_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/optimizer_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/optimizer_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/post_processing_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/post_processing_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/preprocessor_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/preprocessor_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/region_similarity_calculator_builder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/builders/region_similarity_calculator_builder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/anchor_generator.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/balanced_positive_negative_sampler.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/balanced_positive_negative_sampler_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/batcher.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/batcher_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_coder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_coder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_list.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_list_ops.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_list_ops_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_list_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_predictor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/box_predictor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/data_decoder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/data_parser.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/keypoint_ops.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/keypoint_ops_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/losses.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/losses_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/matcher.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/matcher_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/minibatch_sampler.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/minibatch_sampler_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/model.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/post_processing.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/post_processing_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/prefetcher.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/prefetcher_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/preprocessor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/preprocessor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/region_similarity_calculator.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/region_similarity_calculator_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/standard_fields.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/target_assigner.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/core/target_assigner_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data/kitti_label_map.pbtxt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data/mscoco_label_map.pbtxt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data/oid_bbox_trainable_label_map.pbtxt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data/pascal_label_map.pbtxt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data/pet_label_map.pbtxt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data_decoders/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data_decoders/tf_example_decoder.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/data_decoders/tf_example_decoder_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/create_kitti_tf_record.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/create_kitti_tf_record_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/create_oid_tf_record.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/create_pascal_tf_record.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/create_pascal_tf_record_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/create_pet_tf_record.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/oid_tfrecord_creation.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/dataset_tools/oid_tfrecord_creation_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/configuring_jobs.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/defining_your_own_model.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/detection_model_zoo.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/evaluation_protocols.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/exporting_models.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/installation.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/oid_inference_and_evaluation.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/preparing_inputs.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/running_locally.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/running_notebook.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/running_on_cloud.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/running_pets.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/g3doc/using_your_own_dataset.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/inference/detection_inference.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/inference/detection_inference_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/inference/infer_detections.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/matchers/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/matchers/argmax_matcher.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/matchers/argmax_matcher_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/matchers/bipartite_matcher.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/matchers/bipartite_matcher_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/faster_rcnn_meta_arch.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/faster_rcnn_meta_arch_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/faster_rcnn_meta_arch_test_lib.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/rfcn_meta_arch.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/rfcn_meta_arch_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/ssd_meta_arch.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/meta_architectures/ssd_meta_arch_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/metrics/offline_eval_map_corloc.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/metrics/offline_eval_map_corloc_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/metrics/tf_example_parser.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/metrics/tf_example_parser_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/embedded_ssd_mobilenet_v1_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/embedded_ssd_mobilenet_v1_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_inception_resnet_v2_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_inception_resnet_v2_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_inception_v2_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_inception_v2_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_nas_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_nas_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_resnet_v1_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/faster_rcnn_resnet_v1_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/feature_map_generators.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/feature_map_generators_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_inception_v2_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_inception_v2_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_inception_v3_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_inception_v3_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_mobilenet_v1_feature_extractor.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/models/ssd_mobilenet_v1_feature_extractor_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/anchor_generator.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/anchor_generator_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/argmax_matcher.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/argmax_matcher_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/bipartite_matcher.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/bipartite_matcher_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/box_coder.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/box_coder_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/box_predictor.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/box_predictor_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/eval.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/eval_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/faster_rcnn.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/faster_rcnn_box_coder.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/faster_rcnn_box_coder_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/faster_rcnn_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/grid_anchor_generator.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/grid_anchor_generator_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/hyperparams.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/hyperparams_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/image_resizer.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/image_resizer_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/input_reader.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/input_reader_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/keypoint_box_coder.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/keypoint_box_coder_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/losses.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/losses_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/matcher.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/matcher_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/mean_stddev_box_coder.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/mean_stddev_box_coder_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/model.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/model_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/optimizer.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/optimizer_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/pipeline.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/pipeline_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/post_processing.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/post_processing_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/preprocessor.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/preprocessor_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/region_similarity_calculator.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/region_similarity_calculator_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/square_box_coder.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/square_box_coder_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/ssd.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/ssd_anchor_generator.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/ssd_anchor_generator_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/ssd_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/string_int_label_map.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/string_int_label_map_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/train.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/protos/train_pb2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/cloud/cloud.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_inception_resnet_v2_atrous_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_inception_resnet_v2_atrous_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_inception_v2_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_inception_v2_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_nas_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet101_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet101_kitti.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet101_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet101_voc07.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet152_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet152_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet50_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/faster_rcnn_resnet50_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/rfcn_resnet101_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/rfcn_resnet101_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/ssd_inception_v2_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/ssd_inception_v2_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/ssd_mobilenet_v1_coco.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/samples/configs/ssd_mobilenet_v1_pets.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/test_images/image_info.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_config/rfcn_resnet101_coco_2017_11_08/_STORE_PRETRAINED_RFCN_RESNET101_COCO_NETWORK_HERE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_config/rfcn_resnet101_coco_traffic_light.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_config/rfcn_resnet101_coco_traffic_light_50classes.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_config/rfcn_resnet101_coco_traffic_light_adam_50classes.config" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_config/traffic_light_label_map.pbtxt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_eval/_STORE_EVALUATION_EVENTS_HERE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_freeze/_STORE_FROZEN_MODEL_HERE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_model_training/_STORE_MODEL_CHECKPOINTS_HERE.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,20 +306,34 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tl_detector.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tl_detector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+            <state relative-caret-position="204">
+              <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
               <folding>
-                <element signature="e#22#34#0" expanded="true" />
                 <marker date="1514891908823" expanded="true" signature="2791:3571" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>trans</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -79,6 +385,86 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tl_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tl_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tl_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="research" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CarND-Capstone" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tl_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="research" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="object_detection" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -184,9 +570,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="680" y="47" width="1501" height="854" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2020202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2020202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -233,13 +618,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ros/src/twist_controller/twist_controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ros/src/waypoint_loader/waypoint_loader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1232">
@@ -476,7 +854,6 @@
         <state relative-caret-position="204">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#22#34#0" expanded="true" />
             <marker date="1514891908823" expanded="true" signature="2791:3571" ph="..." />
           </folding>
         </state>
@@ -494,7 +871,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22#34#0" expanded="true" />
             <marker date="1514891908823" expanded="true" signature="2791:3571" ph="..." />
           </folding>
         </state>
@@ -513,7 +889,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22#34#0" expanded="true" />
             <marker date="1514891908823" expanded="true" signature="2791:3571" ph="..." />
           </folding>
         </state>
@@ -580,12 +955,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        <state relative-caret-position="204">
+          <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
           <folding>
-            <element signature="e#22#34#0" expanded="true" />
             <marker date="1514891908823" expanded="true" signature="2791:3571" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/anchor_generators/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
