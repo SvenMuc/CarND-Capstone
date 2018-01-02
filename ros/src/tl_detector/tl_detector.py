@@ -9,7 +9,9 @@ from cv_bridge import CvBridge
 from light_classification.tl_classifier import TLClassifier
 import cv2
 import yaml
-import tensorflow as tf
+import tf
+
+import tensorflow as tfl
 import numpy as np
 import os
 import six.moves.urllib as urllib
