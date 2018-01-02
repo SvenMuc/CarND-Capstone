@@ -2,42 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e33c41b6-e1fa-4d6f-9f42-61d92a42e6ad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/category_util.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/category_util_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/config_util.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/config_util_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/dataset_util.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/dataset_util_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/label_map_util.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/label_map_util_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/learning_schedules.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/learning_schedules_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/metrics.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/metrics_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/np_box_list.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/np_box_list_ops.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/np_box_list_ops_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/np_box_list_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/np_box_ops.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/np_box_ops_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/object_detection_evaluation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/object_detection_evaluation_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/ops.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/ops_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/per_image_evaluation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/per_image_evaluation_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/shape_utils.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/shape_utils_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/static_shape.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/static_shape_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/test_utils.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/test_utils_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/variables_helper.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/variables_helper_test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/visualization_utils.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ros/src/tl_detector/utils/visualization_utils_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py" afterPath="$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,25 +14,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tl_detector.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tl_detector.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
               <folding>
                 <element signature="e#22#34#0" expanded="true" />
-                <marker date="1514890259112" expanded="true" signature="2432:3212" ph="..." />
+                <marker date="1514890554351" expanded="true" signature="2670:3450" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ops.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/utils/ops.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -88,12 +43,13 @@
         <option value="$PROJECT_DIR$/ros/src/waypoint_updater/waypoint_updater.py" />
         <option value="$PROJECT_DIR$/ros/src/tl_detector/tl_image_extractor.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="282" />
-    <option name="y" value="45" />
+    <option name="x" value="481" />
+    <option name="y" value="74" />
     <option name="width" value="1501" />
     <option name="height" value="854" />
   </component>
@@ -123,86 +79,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tl_model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tl_model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tl_model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="research" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CarND-Capstone" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tl_model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="research" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="object_detection" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -307,9 +183,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="282" y="45" width="1501" height="854" extended-state="0" />
+    <frame x="481" y="74" width="1501" height="854" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2020202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2020202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -600,7 +477,7 @@
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514890259112" expanded="true" signature="2432:3212" ph="..." />
+            <marker date="1514890554351" expanded="true" signature="2670:3450" ph="..." />
           </folding>
         </state>
       </provider>
@@ -618,7 +495,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514890259112" expanded="true" signature="2432:3212" ph="..." />
+            <marker date="1514890554351" expanded="true" signature="2670:3450" ph="..." />
           </folding>
         </state>
       </provider>
@@ -637,7 +514,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514890259112" expanded="true" signature="2432:3212" ph="..." />
+            <marker date="1514890554351" expanded="true" signature="2670:3450" ph="..." />
           </folding>
         </state>
       </provider>
@@ -693,22 +570,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
+    <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/utils/ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#22#34#0" expanded="true" />
-            <marker date="1514890259112" expanded="true" signature="2432:3212" ph="..." />
-          </folding>
+        <state relative-caret-position="629">
+          <caret line="72" column="23" lean-forward="true" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/utils/ops.py">
+    <entry file="file://$PROJECT_DIR$/ros/src/tl_detector/tl_detector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="323">
+          <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="e#22#34#0" expanded="true" />
+            <marker date="1514890554351" expanded="true" signature="2670:3450" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

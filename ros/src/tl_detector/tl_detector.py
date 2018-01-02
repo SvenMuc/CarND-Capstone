@@ -7,9 +7,21 @@ from styx_msgs.msg import Lane
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 from light_classification.tl_classifier import TLClassifier
-import tf
 import cv2
 import yaml
+import tensorflow as tf
+import numpy as np
+import os
+import six.moves.urllib as urllib
+import sys
+import tarfile
+impor zipfile
+
+from collections import defaultdict
+from io import StringIO
+from matplotlib import pyplot as plt
+from PIL import Image
+
 
 STATE_COUNT_THRESHOLD = 3
 
