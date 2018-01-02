@@ -143,7 +143,17 @@ class TLDetector(object):
 
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
+        ### Perform Model Prediction
+        with detection_graph.as_default():
+            with tfl.Session(graph=detection_graph) as sess:
+                image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+                detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+                detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
+                detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
+                num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 
+                #Load image into np array
+                image_np = load_image_into_numpy_array(msg)
 
 
         #light_wp, state = self.process_traffic_lights()
@@ -171,6 +181,7 @@ class TLDetector(object):
         #cwd = os.getcwd()
         #rospy.logerr(cwd)
         '''
+
 
 
     def get_closest_waypoint(self, pose):
