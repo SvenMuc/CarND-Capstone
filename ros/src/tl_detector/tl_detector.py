@@ -20,7 +20,7 @@ import zipfile
 from collections import defaultdict
 from io import StringIO
 from matplotlib import pyplot as plt
-from PIL import Image
+#from PIL import Image
 
 
 STATE_COUNT_THRESHOLD = 3
