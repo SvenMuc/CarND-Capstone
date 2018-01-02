@@ -77,7 +77,7 @@ def load_image_into_numpy_array(image):
 
     im_width = image.width
     im_height = image.height
-    
+
     #return np.array(image.data).reshape(
     #    (im_height, im_width, 3)).astype(np.unit8)
     return 1
@@ -164,12 +164,12 @@ class TLDetector(object):
         width = msg.width
         data = msg.data
 
-        rospy.logerr(data)
+        #rospy.logerr(data)
         #rospy.logerr(height)    #600
         #rospy.logerr(width)     # 800
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
-        #image_np = load_image_into_numpy_array(msg)
+        image_np = load_image_into_numpy_array(msg)
 
 
 
