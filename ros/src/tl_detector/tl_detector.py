@@ -152,8 +152,8 @@ class TLDetector(object):
         self.state_count += 1
         '''
         cwd = os.getcwd()
-        rospy.logwarn(cwd)
-        
+        rospy.logerr(cwd)
+
     def get_closest_waypoint(self, pose):
         """Identifies the closest path waypoint to the given position
             https://en.wikipedia.org/wiki/Closest_pair_of_points_problem
