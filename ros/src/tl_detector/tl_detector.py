@@ -172,7 +172,7 @@ class TLDetector(object):
         #rospy.logerr(width)     # 800
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
-        image_np = load_image_into_numpy_array(msg)
+
 
 
 
@@ -189,7 +189,19 @@ class TLDetector(object):
                 #Load image into np array
                 #image_load = Img.open(msg)
                 #image_np = load_image_into_numpy_array(image_load)
+                image_np = load_image_into_numpy_array(msg)
+                image_np_expanded = np.expand_dims(image_np, axis=0)
 
+                # Perform Detection
+                (boxes, scores, classes, num) = sess.run(
+                    [detection_boxes, detection_scores, detection_classes, num_detections],
+                    feed_dict={image_tensor: image_np_expanded})
+                rospy.logerr('Number of detections: {}'.format(num))
+                rospy.logerr('Classes:')
+                rospy.logerr(classes)
+                rospy.logerr('scores:')
+                rospy.logerr(scores)
+                
 
         #light_wp, state = self.process_traffic_lights()
 
