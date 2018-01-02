@@ -32,7 +32,7 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_utils
 
 PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
-PATH_TO_LABELS = ""
+PATH_TO_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
 NUM_CLASSES = 4
 
 #sys.path.append("..")
@@ -49,6 +49,12 @@ with detection_graph.as_default():
         serialized_graph = fid.read()
         od_graph_def.ParseFromString(serialized_graph)
         tfl.import_graph_def(od_graph_def, name='')
+
+## Load Label Map
+label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
+categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
+category_index = label_map_util.create_category_index(categories)
+
 
 '''
 cwd = os.getcwd()
