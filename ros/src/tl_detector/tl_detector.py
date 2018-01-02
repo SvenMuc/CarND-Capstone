@@ -141,6 +141,7 @@ class TLDetector(object):
         self.has_image = True
         self.camera_image = msg
 
+        rospy.logerr(msg)
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
         ### Perform Model Prediction
@@ -153,8 +154,8 @@ class TLDetector(object):
                 num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 
                 #Load image into np array
-                image_load = Img.open(msg)
-                image_np = load_image_into_numpy_array(image_load)
+                #image_load = Img.open(msg)
+                #image_np = load_image_into_numpy_array(image_load)
 
 
         #light_wp, state = self.process_traffic_lights()
