@@ -57,9 +57,17 @@ category_index = label_map_util.create_category_index(categories)
 
 
 # Image Helper Code
-def load_image_into_numpy_array(image):
+
+def load_image_into_numpy_array_Original(image):
     (im_width, im_height) = image.size
     return np.array(image.getdata()).reshape(
+        (im_height, im_width, 3)).astype(np.unit8)
+
+
+def load_image_into_numpy_array(image):
+    im_width = image.width
+    im_height = image.height
+    return np.array(image.data).reshape(
         (im_height, im_width, 3)).astype(np.unit8)
 
 '''
@@ -143,10 +151,13 @@ class TLDetector(object):
         height = msg.height
         width = msg.width
 
-        rospy.logerr(height)
-        rospy.logerr(width)
+        #rospy.logerr(height)    #600
+        #rospy.logerr(width)     # 800
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
+        image_np = load_image_into_numpy_array(msg)
+
+        
         ### Perform Model Prediction
         with detection_graph.as_default():
             with tfl.Session(graph=detection_graph) as sess:
