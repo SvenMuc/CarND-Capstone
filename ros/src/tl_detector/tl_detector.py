@@ -58,24 +58,12 @@ category_index = label_map_util.create_category_index(categories)
 
 # Image Helper Code
 
-def load_image_into_numpy_array_Original(image):
-    (im_width, im_height) = image.size
-    return np.array(image.getdata()).reshape(
-        (im_height, im_width, 3)).astype(np.unit8)
-
-
-def load_image_into_numpy_array_Older(image):
-    im_width = image.width
-    im_height = image.height
-    return np.array(image.data).reshape(
-        (im_height, im_width, 3)).astype(np.unit8)
-
 def load_image_into_numpy_array(image):
     bridge = CvBridge()
     cv_image = bridge.imgmsg_to_cv2(image, "bgr8")  #Might want a different Format
     im_width = image.width
     im_height = image.height
-    (rows,cols,channels) = cv_image.shape
+    #(rows,cols,channels) = cv_image.shape
     return np.array(cv_image).reshape(im_height, im_width, 3).astype(np.uint8)
 
     #im_width = image.width
@@ -172,13 +160,12 @@ class TLDetector(object):
         #rospy.logerr(width)     # 800
         ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
-
-
-
+        # Load image into np array
+        image_np = load_image_into_numpy_array(msg)
+        image_np_expanded = np.expand_dims(image_np, axis=0)
 
 
         ### Perform Model Prediction
-        time1 = time.time()
         with detection_graph.as_default():
             with tfl.Session(graph=detection_graph) as sess:
                 image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
@@ -187,17 +174,12 @@ class TLDetector(object):
                 detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
                 num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 
-                #Load image into np array
-                #image_load = Img.open(msg)
-                #image_np = load_image_into_numpy_array(image_load)
-                image_np = load_image_into_numpy_array(msg)
-                image_np_expanded = np.expand_dims(image_np, axis=0)
-
                 # Perform Detection
+                time1 = time.time()
                 (boxes, scores, classes, num) = sess.run(
                     [detection_boxes, detection_scores, detection_classes, num_detections],
                     feed_dict={image_tensor: image_np_expanded})
-                rospy.logerr('Number of detections: {}'.format(num))
+                #rospy.logerr('Number of detections: {}'.format(num))
                 #rospy.logerr('Classes:')
                 #rospy.logerr(classes)
                 #rospy.logerr('scores:')
