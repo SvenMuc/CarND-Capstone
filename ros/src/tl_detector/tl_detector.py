@@ -107,8 +107,10 @@ class TLDetector(object):
         self.light_classifier = TLClassifier()
         self.listener = tf.TransformListener()
 
-        self.state = TrafficLight.UNKNOWN
-        self.last_state = TrafficLight.UNKNOWN
+        #self.state = TrafficLight.UNKNOWN
+        #self.last_state = TrafficLight.UNKNOWN
+        self.state = -1
+        self.last_state = -2
         self.last_wp = -1
         self.state_count = 0
 
@@ -169,13 +171,23 @@ class TLDetector(object):
                 rospy.logerr(time.time() - time1)
 
         # 1 = undefined, 2 = Red, 3 = Yellow, 4 = Green
-        traffic_light_state_prediction = classes[0][np.argmax(scores)]
-        traffic_light_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
-        
-        rospy.logerr("The most likely Class is: {}".format(traffic_light_state_dict[traffic_light_state_prediction]))
+        tl_state_prediction = classes[0][np.argmax(scores)]
+        tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
+
+        rospy.logerr("The most likely Class is: {}".format(tl_state_dict[tl_state_prediction]))
         #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
         #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
+
+        '''
+        state = tl_state_prediction
+
+        if self.state != state:
+            self.state_count = 0
+            state_count +=1
+        if (tl_state_prediction == 2 or tl_state_prediction == 3):
+            state_count +=1
+        '''
 
 
 
