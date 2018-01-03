@@ -1,1 +1,0 @@
-Source: [https://github.com/tensorflow/models](https://github.com/tensorflow/models)
