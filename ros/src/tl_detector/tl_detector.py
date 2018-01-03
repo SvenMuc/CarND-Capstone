@@ -167,8 +167,9 @@ class TLDetector(object):
                 #rospy.logerr('scores:')
                 #rospy.logerr(scores)
                 rospy.logerr(time.time() - time1)
-                rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
-                rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
+                rospy.logerr("The most likely Class is: {}".format(classes[0][np.argmax(scores)]))
+                #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
+                #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
 
 
