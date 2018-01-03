@@ -282,15 +282,14 @@ class WaypointUpdater(object):
 
     def traffic_light_cb(self, msg):
         #Decode Message
-        state = msg.data
-        rospy.logerr("The Current State warld beiz = : {}".format(state))
-        '''
-        light_state = 0 #Decode
-        if (light_state == 'Green') or (light_state == 'Unknown'):
+        light_state = msg.data
+        #rospy.logerr("The Current State warld beiz = : {}".format(state))
+        # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
+        if (light_state == 4) or (light_state == 1):
             self.red_traffic_light_ahead = False
-        elif (light_state == 'Red') or (light_state == 'Yellow'):
+        elif (light_state == 2) or (light_state == 3):
             self.red_traffic_light_ahead = True
-        '''
+
 
     def obstacle_cb(self, msg):
         # TODO: Callback for /obstacle_waypoint message. We will implement it later

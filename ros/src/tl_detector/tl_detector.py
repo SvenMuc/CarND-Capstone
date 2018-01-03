@@ -172,11 +172,11 @@ class TLDetector(object):
 
 
         # Grab the class with the heighest prediction score
-        # 1 = undefined, 2 = Red, 3 = Yellow, 4 = Green
+        # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
         tl_state_prediction = classes[0][np.argmax(scores)]
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
 
-        rospy.logerr("The most likely Class is: {}".format(tl_state_dict[tl_state_prediction]))
+        #rospy.logerr("The most likely Class is: {}".format(tl_state_dict[tl_state_prediction]))
         #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
         #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
