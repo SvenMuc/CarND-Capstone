@@ -32,7 +32,8 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_utils
 
 
-PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
+#PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
+PATH_TO_FROZEN_MODEL = "../frozen_inference_graph.pb"
 PATH_TO_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
 NUM_CLASSES = 4
 STATE_COUNT_THRESHOLD = 3
