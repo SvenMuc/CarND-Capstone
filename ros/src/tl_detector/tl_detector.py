@@ -170,6 +170,8 @@ class TLDetector(object):
                 #rospy.logerr(scores)
                 rospy.logerr(time.time() - time1)
 
+
+        # Grab the class with the heighest prediction score
         # 1 = undefined, 2 = Red, 3 = Yellow, 4 = Green
         tl_state_prediction = classes[0][np.argmax(scores)]
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
@@ -179,6 +181,9 @@ class TLDetector(object):
         #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
 
+        msg = Int32
+        msg.data = tl_state_prediction
+        self.upcoming_red_light_pub.publish(msg)
         '''
         state = tl_state_prediction
 

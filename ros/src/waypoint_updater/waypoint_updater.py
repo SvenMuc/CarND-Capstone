@@ -29,6 +29,10 @@ LOOKAHEAD_WPS = 50  # Number of waypoints we will publish.
 STOP_LINE_THRESHOLD = 30.0  # Number of waypoints between the stop line and the traffic lights
 MAX_ACCE = 1.0
 
+# True for Ground Truth Traffic Data
+# False for Model Prediction Traffic Data
+TRAFFIC_STATES_KNOWN = False
+
 
 class WaypointUpdater(object):
     def __init__(self):
@@ -41,6 +45,8 @@ class WaypointUpdater(object):
         # TODO: Add a subscriber for /traffic_waypoint and /obstacle_waypoint below
 
         rospy.Subscriber('/vehicle/traffic_lights', TrafficLightArray, self.traffic_cb, queue_size=2)
+        rospy.Subscriber('/traffic_waypoint', Int32, self.traffic_light_cb, queue_size=1 )
+
 
         self.final_waypoints_pub = rospy.Publisher('final_waypoints', Lane, queue_size=1)
 
@@ -195,40 +201,95 @@ class WaypointUpdater(object):
 
     def traffic_cb(self, msg):
         # TODO: Callback for /traffic_waypoint message. Implement
-
         if self.current_velocity is None or self.current_pos is None or self.base_waypoints is None:
             return
+
 
         # @Bassam: For testing purpose we are subscribing to the /vehicle/traffic_lights
         traffic_lights = msg.lights
         closest_tl = None
         closest_dist = sys.maxint  # Some big number
 
-        for i in range(len(traffic_lights)):
-            tl = msg.lights[i]
-            if tl.state == TrafficLight.RED or tl.state == TrafficLight.YELLOW:  # Red or Yellow Traffic light
-                # Convert traffic light location to car local coordinates
+
+        # If we are using Model Prediction
+        if (TRAFFIC_STATES_KNOWN == False):
+            # Iterate through all traffic lights
+            for i in range(len(traffic_lights)):
+                tl = msg.lights[i]
+
+                #Constantly track the location of the nearest trafficlight
+                ## Grab positional Data on self, then on tl
                 x, y, theta_car, theta_tl = self.convert_local(tl, self.current_pos)
                 dl = lambda a, b: math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)
                 dist = dl(tl.pose.pose.position,
                           self.base_waypoints.waypoints[self.closest_waypoint_idx].pose.pose.position)
+                ## Set the closest stoplight
                 if x > 0.0 and 0 < dist < closest_dist:
                     closest_tl = tl
                     closest_dist = dist
 
-        if closest_tl is not None:
-            tl_waypoint_idx = self.get_closest_waypoint_idx(0, closest_tl.pose)
-            # carla_closest_waypoint = self.get_closest_waypoint_idx(0, self.current_pos)
-            # dist_to_stop_line = self.distance(self.base_waypoints.waypoints, carla_closest_waypoint,
-            #                                  tl_waypoint_idx) - STOP_LINE_THRESHOLD
-            # if dist_to_stop_line > -5:  # STOP_LINE_THRESHOLD * 1.5:
-            self.red_traffic_light_waypoint_idx = tl_waypoint_idx
-            self.red_traffic_light_ahead = True
-            # else:
-            #    self.red_traffic_light_ahead = False
-            # rospy.logdebug("Closest Red traffic light {} meters ahead".format(dist))
-        else:
+            # IF there is a closest trafficlight
+            if closest_tl is not None:
+                tl_waypoint_idx = self.get_closest_waypoint_idx(0, closest_tl.pose)
+                # carla_closest_waypoint = self.get_closest_waypoint_idx(0, self.current_pos)
+                # dist_to_stop_line = self.distance(self.base_waypoints.waypoints, carla_closest_waypoint,
+                #                                  tl_waypoint_idx) - STOP_LINE_THRESHOLD
+                # if dist_to_stop_line > -5:  # STOP_LINE_THRESHOLD * 1.5:
+
+
+                self.red_traffic_light_waypoint_idx = tl_waypoint_idx
+
+                #Modify this to be performed in TrafficWaypoint cb
+                #self.red_traffic_light_ahead = True
+
+                # else:
+                #    self.red_traffic_light_ahead = False
+                # rospy.logdebug("Closest Red traffic light {} meters ahead".format(dist))
+            #else:
+                ## This piece does not really do anything now. So commenting it out
+                #self.red_traffic_light_ahead = False
+
+        #If we are using Ground Truth Stoplights
+        elif(TRAFFIC_STATES_KNOWN == True):
+            for i in range(len(traffic_lights)):
+                tl = msg.lights[i]
+                if tl.state == TrafficLight.RED or tl.state == TrafficLight.YELLOW:  # Red or Yellow Traffic light
+                    # Convert traffic light location to car local coordinates
+                    x, y, theta_car, theta_tl = self.convert_local(tl, self.current_pos)
+                    dl = lambda a, b: math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)
+                    dist = dl(tl.pose.pose.position,
+                              self.base_waypoints.waypoints[self.closest_waypoint_idx].pose.pose.position)
+                    if x > 0.0 and 0 < dist < closest_dist:
+                        closest_tl = tl
+                        closest_dist = dist
+
+            if closest_tl is not None:
+                tl_waypoint_idx = self.get_closest_waypoint_idx(0, closest_tl.pose)
+                # carla_closest_waypoint = self.get_closest_waypoint_idx(0, self.current_pos)
+                # dist_to_stop_line = self.distance(self.base_waypoints.waypoints, carla_closest_waypoint,
+                #                                  tl_waypoint_idx) - STOP_LINE_THRESHOLD
+                # if dist_to_stop_line > -5:  # STOP_LINE_THRESHOLD * 1.5:
+                self.red_traffic_light_waypoint_idx = tl_waypoint_idx
+                self.red_traffic_light_ahead = True
+                # else:
+                #    self.red_traffic_light_ahead = False
+                # rospy.logdebug("Closest Red traffic light {} meters ahead".format(dist))
+            else:
+                self.red_traffic_light_ahead = False
+
+
+
+    def traffic_light_cb(self, msg):
+        #Decode Message
+        state = msg.data
+        rospy.logerr("The Current State warld beiz = : {}".format(state))
+        '''
+        light_state = 0 #Decode
+        if (light_state == 'Green') or (light_state == 'Unknown'):
             self.red_traffic_light_ahead = False
+        elif (light_state == 'Red') or (light_state == 'Yellow'):
+            self.red_traffic_light_ahead = True
+        '''
 
     def obstacle_cb(self, msg):
         # TODO: Callback for /obstacle_waypoint message. We will implement it later
