@@ -181,9 +181,9 @@ class TLDetector(object):
         #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
 
-        msg = Int32
-        msg.data = tl_state_prediction
-        self.upcoming_red_light_pub.publish(msg)
+        pubmsg = Int32()
+        pubmsg.data = tl_state_prediction
+        self.upcoming_red_light_pub.publish(pubmsg)
         '''
         state = tl_state_prediction
 
