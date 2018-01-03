@@ -31,15 +31,11 @@ import logging
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_utils
 
+
 PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
 PATH_TO_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
 NUM_CLASSES = 4
-
-#sys.path.append("..")
-
-#from utils import label_map_util
-#from utils import visualization_utils as vis_util
-
+STATE_COUNT_THRESHOLD = 3
 
 ### Load Frozen Graph
 detection_graph = tfl.Graph()
@@ -57,7 +53,6 @@ category_index = label_map_util.create_category_index(categories)
 
 
 # Image Helper Code
-
 def load_image_into_numpy_array(image):
     bridge = CvBridge()
     cv_image = bridge.imgmsg_to_cv2(image, "bgr8")  #Might want a different Format
@@ -66,15 +61,8 @@ def load_image_into_numpy_array(image):
     #(rows,cols,channels) = cv_image.shape
     return np.array(cv_image).reshape(im_height, im_width, 3).astype(np.uint8)
 
-    #im_width = image.width
-    #im_height = image.height
-
-    #return np.array(image.data).reshape(
-    #    (im_height, im_width, 3)).astype(np.unit8)
-    #return 1
 
 
-STATE_COUNT_THRESHOLD = 3
 
 class TLDetector(object):
     def __init__(self):
@@ -136,14 +124,6 @@ class TLDetector(object):
         """
         self.has_image = True
         self.camera_image = msg
-        height = msg.height
-        width = msg.width
-        data = msg.data
-
-        #rospy.logerr(data)
-        #rospy.logerr(height)    #600
-        #rospy.logerr(width)     # 800
-        ### This is where model can be implemented, or we can push it to self.process_traffic_lights()
 
         # Load image into np array
         image_np = load_image_into_numpy_array(msg)
@@ -177,19 +157,15 @@ class TLDetector(object):
         tl_state_prediction = classes[0][np.argmax(scores)]
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
 
-        #rospy.logerr("The most likely Class is: {}".format(tl_state_dict[tl_state_prediction]))
-        #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
-        #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
-
+        # If the recent state was detected 3/4 of the last detections, publish it
         state = tl_state_prediction
         self.state_average.pop(0)
         self.state_average.append(state)
-
-        # If the recent state was detected 3/4 of the last detections, publish it
         if (self.state_average.count(state) >= 3):
             pubmsg = Int32()
             pubmsg.data = tl_state_prediction
             self.upcoming_red_light_pub.publish(pubmsg)
+            rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
 
         '''
         # If the same state is detected 3 times in a row, it is considered true

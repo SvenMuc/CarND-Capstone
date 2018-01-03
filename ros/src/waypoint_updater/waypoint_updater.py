@@ -32,7 +32,7 @@ MAX_ACCE = 1.0
 
 # True for Ground Truth Traffic Data
 # False for Model Prediction Traffic Data
-TRAFFIC_STATES_KNOWN = False
+USE_GT_TRAFFIC_STATE = False
 
 
 class WaypointUpdater(object):
@@ -205,7 +205,6 @@ class WaypointUpdater(object):
         if self.current_velocity is None or self.current_pos is None or self.base_waypoints is None:
             return
 
-
         # @Bassam: For testing purpose we are subscribing to the /vehicle/traffic_lights
         traffic_lights = msg.lights
         closest_tl = None
@@ -213,7 +212,7 @@ class WaypointUpdater(object):
 
 
         # If we are using Model Prediction
-        if (TRAFFIC_STATES_KNOWN == False):
+        if (USE_GT_TRAFFIC_STATE == False):
             # Iterate through all traffic lights
             for i in range(len(traffic_lights)):
                 tl = msg.lights[i]
@@ -229,29 +228,17 @@ class WaypointUpdater(object):
                     closest_tl = tl
                     closest_dist = dist
 
-            # IF there is a closest trafficlight
+            # IF there is a closest traffic light
             if closest_tl is not None:
                 tl_waypoint_idx = self.get_closest_waypoint_idx(0, closest_tl.pose)
                 # carla_closest_waypoint = self.get_closest_waypoint_idx(0, self.current_pos)
                 # dist_to_stop_line = self.distance(self.base_waypoints.waypoints, carla_closest_waypoint,
                 #                                  tl_waypoint_idx) - STOP_LINE_THRESHOLD
                 # if dist_to_stop_line > -5:  # STOP_LINE_THRESHOLD * 1.5:
-
-
                 self.red_traffic_light_waypoint_idx = tl_waypoint_idx
 
-                #Modify this to be performed in TrafficWaypoint cb
-                #self.red_traffic_light_ahead = True
-
-                # else:
-                #    self.red_traffic_light_ahead = False
-                # rospy.logdebug("Closest Red traffic light {} meters ahead".format(dist))
-            #else:
-                ## This piece does not really do anything now. So commenting it out
-                #self.red_traffic_light_ahead = False
-
         #If we are using Ground Truth Stoplights
-        elif(TRAFFIC_STATES_KNOWN == True):
+        elif(USE_GT_TRAFFIC_STATE == True):
             for i in range(len(traffic_lights)):
                 tl = msg.lights[i]
                 if tl.state == TrafficLight.RED or tl.state == TrafficLight.YELLOW:  # Red or Yellow Traffic light
@@ -279,11 +266,9 @@ class WaypointUpdater(object):
                 self.red_traffic_light_ahead = False
 
 
-
     def traffic_light_cb(self, msg):
         #Decode Message
         light_state = msg.data
-        #rospy.logerr("The Current State warld beiz = : {}".format(state))
         # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
         if (light_state == 4) or (light_state == 1):
             self.red_traffic_light_ahead = False
