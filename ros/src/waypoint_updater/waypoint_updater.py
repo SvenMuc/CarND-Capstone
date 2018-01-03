@@ -32,7 +32,7 @@ MAX_ACCE = 1.0
 
 # True for Ground Truth Traffic Data
 # False for Model Prediction Traffic Data
-USE_GT_TRAFFIC_STATE = False
+USE_GT_TRAFFIC_STATE = True
 
 
 class WaypointUpdater(object):
@@ -268,13 +268,13 @@ class WaypointUpdater(object):
 
     def traffic_light_cb(self, msg):
         #Decode Message
-        light_state = msg.data
-        # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
-        if (light_state == 4) or (light_state == 1):
-            self.red_traffic_light_ahead = False
-        elif (light_state == 2) or (light_state == 3):
-            self.red_traffic_light_ahead = True
-
+        if (USE_GT_TRAFFIC_STATE == False):
+            light_state = msg.data
+            # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
+            if (light_state == 4) or (light_state == 1):
+                self.red_traffic_light_ahead = False
+            elif (light_state == 2) or (light_state == 3):
+                self.red_traffic_light_ahead = True
 
     def obstacle_cb(self, msg):
         # TODO: Callback for /obstacle_waypoint message. We will implement it later
