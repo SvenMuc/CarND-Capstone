@@ -113,6 +113,7 @@ class TLDetector(object):
         self.last_state = -2
         self.last_wp = -1
         self.state_count = 0
+        self.state_average = [0,0,0,0]
 
         rospy.spin()
 
@@ -180,12 +181,37 @@ class TLDetector(object):
         #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
         #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
-
-        pubmsg = Int32()
-        pubmsg.data = tl_state_prediction
-        self.upcoming_red_light_pub.publish(pubmsg)
-        '''
         state = tl_state_prediction
+        self.state_average.pop(0)
+        self.state_average.append(state)
+
+        # If the recent state was detected 3/4 of the last detections, publish it
+        if (self.state_average.count(state) >= 3):
+            pubmsg = Int32()
+            pubmsg.data = tl_state_prediction
+            self.upcoming_red_light_pub.publish(pubmsg)
+
+        '''
+        # If the same state is detected 3 times in a row, it is considered true
+        if self.state != state:
+            self.state_count = 0
+        elif self.state == state:
+            self.state_count += 1
+            if self.state_count >= STATE_COUNT_THRESHOLD:
+                pubmsg = Int32()
+                pubmsg.data = tl_state_prediction
+                self.upcoming_red_light_pub.publish(pubmsg)
+
+        self.state = state
+        '''
+        '''
+        self.state = -1
+        self.last_state = -2
+        self.last_wp = -1
+        self.state_count = 0
+        state = tl_state_prediction
+
+
 
         if self.state != state:
             self.state_count = 0
