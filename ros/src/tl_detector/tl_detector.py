@@ -134,9 +134,9 @@ class TLDetector(object):
 
                 # Perform Detection
                 time1 = time.time()
-                (boxes, scores, classes, num) = sess.run(
-                    [detection_boxes, detection_scores, detection_classes, num_detections],
-                    feed_dict={image_tensor: image_np_expanded})
+                #(boxes, scores, classes, num) = sess.run(
+                #    [detection_boxes, detection_scores, detection_classes, num_detections],
+                #    feed_dict={image_tensor: image_np_expanded})
                 #rospy.logerr('Number of detections: {}'.format(num))
                 #rospy.logerr('Classes:')
                 #rospy.logerr(classes)
@@ -147,7 +147,8 @@ class TLDetector(object):
 
         # Grab the class with the heighest prediction score
         # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
-        tl_state_prediction = classes[0][np.argmax(scores)]
+        #tl_state_prediction = classes[0][np.argmax(scores)]
+        tl_state_prediction = 4
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
         rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
 
