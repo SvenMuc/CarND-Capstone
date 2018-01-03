@@ -73,24 +73,6 @@ def load_image_into_numpy_array(image):
     #    (im_height, im_width, 3)).astype(np.unit8)
     #return 1
 
-'''
-cwd = os.getcwd()
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-rospy.logwarn(cwd)
-'''
 
 STATE_COUNT_THRESHOLD = 3
 
@@ -185,6 +167,11 @@ class TLDetector(object):
                 #rospy.logerr('scores:')
                 #rospy.logerr(scores)
                 rospy.logerr(time.time() - time1)
+                rospy.logerr(" The number of detections: {}".format(len(detection_classes)))
+                rospy.logerr(" The number of scores: {}".format(len(detection_scores)))
+
+
+
 
         #light_wp, state = self.process_traffic_lights()
 
