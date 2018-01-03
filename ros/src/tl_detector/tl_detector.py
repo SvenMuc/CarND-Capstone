@@ -167,9 +167,14 @@ class TLDetector(object):
                 #rospy.logerr('scores:')
                 #rospy.logerr(scores)
                 rospy.logerr(time.time() - time1)
-                rospy.logerr("The most likely Class is: {}".format(classes[0][np.argmax(scores)]))
-                #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
-                #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
+
+        # 1 = undefined, 2 = Red, 3 = Yellow, 4 = Green
+        traffic_light_state_prediction = classes[0][np.argmax(scores)]
+        traffic_light_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
+        
+        rospy.logerr("The most likely Class is: {}".format(traffic_light_state_dict[traffic_light_state_prediction]))
+        #rospy.logerr(" The number of detections: {}".format(np.argmax(classes[0])))
+        #rospy.logerr(" The number of scores: {}".format(np.argmax(scores[0])))
 
 
 
