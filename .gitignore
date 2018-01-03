@@ -4,5 +4,5 @@ build
 devel
 bags
 export
-
+frozen_inference_graph.pb
 profile.tmp
