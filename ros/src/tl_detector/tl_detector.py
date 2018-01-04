@@ -54,7 +54,7 @@ category_index = label_map_util.create_category_index(categories)
 # Image Helper Code
 def load_image_into_numpy_array(image):
     bridge = CvBridge()
-    cv_image = bridge.imgmsg_to_cv2(image, "bgr8")  #Might want a different Format
+    cv_image = bridge.imgmsg_to_cv2(image, "rgb8")  #Might want a different Format
     im_width = image.width
     im_height = image.height
     return np.array(cv_image).reshape(im_height, im_width, 3).astype(np.uint8)
