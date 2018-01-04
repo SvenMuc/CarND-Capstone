@@ -150,6 +150,7 @@ class TLDetector(object):
         tl_state_prediction = classes[0][np.argmax(scores)]
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
         rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
+        rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
 
         # If the recent state was detected 3/4 of the last detections, publish it
         state = tl_state_prediction
