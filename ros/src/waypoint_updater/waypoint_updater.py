@@ -66,7 +66,7 @@ class WaypointUpdater(object):
         self.current_pos = None
         self.current_velocity = None
         self.max_speed_mps = self.kmph2mps(rospy.get_param('~velocity'))
-        rospy.logdebug("Max speed in mps: {}".format(self.max_speed_mps))
+        #rospy.logdebug("Max speed in mps: {}".format(self.max_speed_mps))
 
         rospy.spin()
 
@@ -132,12 +132,14 @@ class WaypointUpdater(object):
 
                     next_wp = self.base_waypoints.waypoints[j_mod]
                     if self.red_traffic_light_ahead:
+                        '''
                         rospy.logdebug(
                             "Red Traffic light Ahead Idx?: {}  Carla Idx: {} diff: {} distance: {}".format(
                                 self.red_traffic_light_waypoint_idx,
                                 self.closest_waypoint_idx,
                                 self.red_traffic_light_waypoint_idx - self.closest_waypoint_idx,
                                 dist_to_stop_line))
+                        '''
                         if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD*3):
                             # dist = self.distance(self.base_waypoints.waypoints, j_mod, j_mod + 2)
                             if self.current_velocity < 0.1:
@@ -152,10 +154,12 @@ class WaypointUpdater(object):
                             # rospy.logdebug(
                             #     "Current velocity: {} Target velocity: {}".format(self.current_velocity, vel))
                             next_wp.twist.twist.linear.x = vel
+                            '''
                             rospy.logdebug(
                                 "Stop Next waypoint idx: {}  velocity: {} distance%: {}"
                                     .format(j, next_wp.twist.twist.linear.x,
                                             (dist_to_stop_line / (STOP_LINE_THRESHOLD))))
+                            '''
                         else:
                             next_wp.twist.twist.linear.x = min(self.current_velocity + ((j + 1) * MAX_ACCE),
                                                                self.max_speed_mps)
