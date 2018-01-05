@@ -26,7 +26,7 @@ from PIL import Image as Img
 
 
 # Used in Label Mapping
-from google.protobuf import text_format
+#from google.protobuf import text_format
 import logging
 
 #PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
@@ -187,7 +187,7 @@ class TLDetector(object):
             pubmsg = Int32()
             pubmsg.data = tl_state_prediction
             self.upcoming_red_light_pub.publish(pubmsg)
-            rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
+            #rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
 
 
     def get_closest_waypoint(self, pose):
