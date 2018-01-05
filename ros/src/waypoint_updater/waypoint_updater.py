@@ -32,7 +32,7 @@ MAX_ACCE = 1.0
 
 # True for Ground Truth Traffic Data
 # False for Model Prediction Traffic Data
-USE_GT_TRAFFIC_STATE = True
+USE_GT_TRAFFIC_STATE = False
 
 
 class WaypointUpdater(object):
