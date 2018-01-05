@@ -13,6 +13,24 @@ This is the project repo for the final project of the Udacity Self-Driving Car N
 | Bassam Sayed			            | b`underscore`sayed at icloud.com	 |
 
 
+### Project Overview
+This project consists of ROSNodes that collect telemetry and camera data in order to drive through waypoints on a road.
+The system adapts to changing traffic patterns in order to have the vehicle arrive safely at it's destination.
+
+
+
+### Project Architecture
+* Nodes List
+    *subscribes
+    *Publishes
+    *Description
+
+### Decision Reasoning
+
+### Dependencies
+
+### Trouble Shooting
+
 
 ### How DBW Works?
 We have created a TwistController class from twist_controller.py which will be used for implementing the necessary controllers. The throttle values passed to publish should be in the range 0 to 1, although a throttle of 1 means the vehicle throttle will be fully engaged. Brake values passed to publish should be in units of torque (N*m). The correct values for brake can be computed using the desired acceleration, weight of the vehicle, and wheel radius.
