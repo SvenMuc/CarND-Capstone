@@ -184,7 +184,11 @@ class TLDetector(object):
 
         # Grab the class with the heighest prediction score
         # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
-        tl_state_prediction = classes[0][np.argmax(scores)]
+        score = scores[0][np.argmax(scores)]
+        if (score >= .50):
+            tl_state_prediction = classes[0][np.argmax(scores)]
+        else :
+            tl_state_prediction = 1
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
         rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
         rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
