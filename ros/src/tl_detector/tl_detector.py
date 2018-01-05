@@ -104,6 +104,7 @@ class TLDetector(object):
         self.last_wp = -1
         self.state_count = 0
         self.state_average = [0,0,0,0]
+        self.model_loaded = False
 
         rospy.spin()
 
