@@ -28,8 +28,6 @@ from PIL import Image as Img
 # Used in Label Mapping
 from google.protobuf import text_format
 import logging
-from object_detection.utils import label_map_util
-from object_detection.utils import visualization_utils as vis_utils
 
 #PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
 PATH_TO_SIM_FROZEN_MODEL = "../frozen_inference_graph.pb"
@@ -137,11 +135,6 @@ class TLDetector(object):
                     od_graph_def.ParseFromString(serialized_graph)
                     tfl.import_graph_def(od_graph_def, name='')
 
-            ## Load Label Map
-            label_map = label_map_util.load_labelmap(label_path)
-            categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES,
-                                                                        use_display_name=True)
-            category_index = label_map_util.create_category_index(categories)
 
             self.model_loaded = True
 
