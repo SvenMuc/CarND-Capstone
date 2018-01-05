@@ -123,6 +123,12 @@ class TLDetector(object):
             #rospy.logwarn(msg.width)    # Width is 800
             #thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
             ### Load Frozen Graph
+
+            if msg.height == 600 and msg.width == 800:
+                rospy.logwarn("Detected")
+            else:
+                rospy.logwarn("Did not work")
+
             with detection_graph.as_default():
                 od_graph_def = tfl.GraphDef()
                 with tfl.gfile.GFile(model_path, 'rb') as fid:
