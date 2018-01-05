@@ -35,6 +35,7 @@ from object_detection.utils import visualization_utils as vis_utils
 PATH_TO_SIM_FROZEN_MODEL = "../frozen_inference_graph.pb"
 PATH_TO_REAL_FROZEN_MODEL = "../frozen_inference_graph.pb"
 
+
 PATH_TO_SIM_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
 PATH_TO_REAL_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
 
@@ -42,20 +43,22 @@ NUM_CLASSES = 4
 STATE_COUNT_THRESHOLD = 3
 
 
-def thaw_Model(model_path, label_path):
-    ### Load Frozen Graph
-    detection_graph = tfl.Graph()
-    with detection_graph.as_default():
-        od_graph_def = tfl.GraphDef()
-        with tfl.gfile.GFile(model_path, 'rb') as fid:
-            serialized_graph = fid.read()
-            od_graph_def.ParseFromString(serialized_graph)
-            tfl.import_graph_def(od_graph_def, name='')
+model_path = PATH_TO_SIM_FROZEN_MODEL
+label_map = PATH_TO_SIM_LABELS
 
-    ## Load Label Map
-    label_map = label_map_util.load_labelmap(label_path)
-    categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
-    category_index = label_map_util.create_category_index(categories)
+### Load Frozen Graph
+detection_graph = tfl.Graph()
+with detection_graph.as_default():
+    od_graph_def = tfl.GraphDef()
+    with tfl.gfile.GFile(model_path, 'rb') as fid:
+        serialized_graph = fid.read()
+        od_graph_def.ParseFromString(serialized_graph)
+        tfl.import_graph_def(od_graph_def, name='')
+
+## Load Label Map
+label_map = label_map_util.load_labelmap(label_path)
+categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
+category_index = label_map_util.create_category_index(categories)
 
 # Image Helper Code
 def load_image_into_numpy_array(image):
@@ -101,7 +104,6 @@ class TLDetector(object):
         self.last_wp = -1
         self.state_count = 0
         self.state_average = [0,0,0,0]
-        self.model_loaded = False
 
         rospy.spin()
 
@@ -124,27 +126,11 @@ class TLDetector(object):
         """
 
         if (self.model_loaded == False):
-            if msg.width == 800 and msg.height == 600:
-                model_path = PATH_TO_SIM_FROZEN_MODEL
-                label_path = PATH_TO_SIM_LABELS
-            else :
-                model_path = PATH_TO_REAL_FROZEN_MODEL
-                label_path = PATH_TO_REAL_LABELS
-                roslog.warn("Its not working")
+            rospy.logwarn(msg.height)
+            rospy.logwarn(msg.width)
 
-            ### Load Frozen Graph
-            detection_graph = tfl.Graph()
-            with detection_graph.as_default():
-                od_graph_def = tfl.GraphDef()
-                with tfl.gfile.GFile(model_path, 'rb') as fid:
-                    serialized_graph = fid.read()
-                    od_graph_def.ParseFromString(serialized_graph)
-                    tfl.import_graph_def(od_graph_def, name='')
-            ## Load Label Map
-            label_map = label_map_util.load_labelmap(label_path)
-            categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES,
-                                                                        use_display_name=True)
-            category_index = label_map_util.create_category_index(categories)
+            
+            #thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
             self.model_loaded = True
 
 
@@ -154,7 +140,6 @@ class TLDetector(object):
         # Load image into np array
         image_np = load_image_into_numpy_array(msg)
         image_np_expanded = np.expand_dims(image_np, axis=0)
-
 
 
 
