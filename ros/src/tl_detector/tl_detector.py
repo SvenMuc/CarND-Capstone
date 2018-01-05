@@ -114,16 +114,14 @@ class TLDetector(object):
 
         """
 
-
-
-
-
+        # Load Model
         if (self.model_loaded == False):
             #rospy.logwarn(msg.height)   # Height is 600
             #rospy.logwarn(msg.width)    # Width is 800
             #thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
             ### Load Frozen Graph
 
+            # Determine which model to load
             if msg.height == 600 and msg.width == 800:
                 model_path = PATH_TO_SIM_FROZEN_MODEL
                 label_path = PATH_TO_SIM_LABELS
@@ -155,11 +153,6 @@ class TLDetector(object):
         image_np = load_image_into_numpy_array(msg)
         image_np_expanded = np.expand_dims(image_np, axis=0)
 
-
-
-
-
-
         ### Perform Model Prediction
         with detection_graph.as_default():
             with tfl.Session(graph=detection_graph) as sess:
@@ -179,7 +172,7 @@ class TLDetector(object):
                 #rospy.logerr(classes)
                 #rospy.logerr('scores:')
                 #rospy.logerr(scores)
-                rospy.logwarn('Time for model prediction: {}'.format(time.time() - time1))
+                #rospy.logwarn('Time for model prediction: {}'.format(time.time() - time1))
 
 
         # Grab the class with the heighest prediction score
@@ -190,8 +183,8 @@ class TLDetector(object):
         else :
             tl_state_prediction = 1
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
-        rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
-        rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
+        #rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
+        #rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
 
         # If the recent state was detected 3/4 of the last detections, publish it
         state = tl_state_prediction
