@@ -32,24 +32,30 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_utils
 
 #PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
-PATH_TO_FROZEN_MODEL = "../frozen_inference_graph.pb"
-PATH_TO_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
+PATH_TO_SIM_FROZEN_MODEL = "../frozen_inference_graph.pb"
+PATH_TO_REAL_FROZEN_MODEL = "../frozen_inference_graph.pb"
+
+PATH_TO_SIM_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
+PATH_TO_REAL_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
+
 NUM_CLASSES = 4
 STATE_COUNT_THRESHOLD = 3
 
-### Load Frozen Graph
-detection_graph = tfl.Graph()
-with detection_graph.as_default():
-    od_graph_def = tfl.GraphDef()
-    with tfl.gfile.GFile(PATH_TO_FROZEN_MODEL, 'rb') as fid:
-        serialized_graph = fid.read()
-        od_graph_def.ParseFromString(serialized_graph)
-        tfl.import_graph_def(od_graph_def, name='')
 
-## Load Label Map
-label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
-categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
-category_index = label_map_util.create_category_index(categories)
+def thaw_Model(model_path, label_path):
+    ### Load Frozen Graph
+    detection_graph = tfl.Graph()
+    with detection_graph.as_default():
+        od_graph_def = tfl.GraphDef()
+        with tfl.gfile.GFile(model_path, 'rb') as fid:
+            serialized_graph = fid.read()
+            od_graph_def.ParseFromString(serialized_graph)
+            tfl.import_graph_def(od_graph_def, name='')
+
+    ## Load Label Map
+    label_map = label_map_util.load_labelmap(label_path)
+    categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
+    category_index = label_map_util.create_category_index(categories)
 
 # Image Helper Code
 def load_image_into_numpy_array(image):
@@ -95,6 +101,7 @@ class TLDetector(object):
         self.last_wp = -1
         self.state_count = 0
         self.state_average = [0,0,0,0]
+        self.model_loaded = False
 
         rospy.spin()
 
@@ -115,12 +122,24 @@ class TLDetector(object):
             msg (Image): image from car-mounted camera
 
         """
+
+        if (self.model_loaded == False):
+            thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
+            rospy.logwarn("The image Width is {}".format(msg.width))
+            rospy.logwarn("The image Height is {}".format(msg.height))
+            self.model_loaded = True
+
+
         self.has_image = True
         self.camera_image = msg
 
         # Load image into np array
         image_np = load_image_into_numpy_array(msg)
         image_np_expanded = np.expand_dims(image_np, axis=0)
+
+
+
+
 
 
         ### Perform Model Prediction
