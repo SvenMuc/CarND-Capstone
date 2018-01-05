@@ -46,19 +46,7 @@ STATE_COUNT_THRESHOLD = 3
 model_path = PATH_TO_SIM_FROZEN_MODEL
 label_path = PATH_TO_SIM_LABELS
 
-### Load Frozen Graph
 detection_graph = tfl.Graph()
-with detection_graph.as_default():
-    od_graph_def = tfl.GraphDef()
-    with tfl.gfile.GFile(model_path, 'rb') as fid:
-        serialized_graph = fid.read()
-        od_graph_def.ParseFromString(serialized_graph)
-        tfl.import_graph_def(od_graph_def, name='')
-
-## Load Label Map
-label_map = label_map_util.load_labelmap(label_path)
-categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES, use_display_name=True)
-category_index = label_map_util.create_category_index(categories)
 
 # Image Helper Code
 def load_image_into_numpy_array(image):
@@ -126,12 +114,28 @@ class TLDetector(object):
 
         """
 
+
+
+
+
         if (self.model_loaded == False):
-            rospy.logwarn(msg.height)
-            rospy.logwarn(msg.width)
-
-
+            #rospy.logwarn(msg.height)   # Height is 600
+            #rospy.logwarn(msg.width)    # Width is 800
             #thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
+            ### Load Frozen Graph
+            with detection_graph.as_default():
+                od_graph_def = tfl.GraphDef()
+                with tfl.gfile.GFile(model_path, 'rb') as fid:
+                    serialized_graph = fid.read()
+                    od_graph_def.ParseFromString(serialized_graph)
+                    tfl.import_graph_def(od_graph_def, name='')
+
+            ## Load Label Map
+            label_map = label_map_util.load_labelmap(label_path)
+            categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES,
+                                                                        use_display_name=True)
+            category_index = label_map_util.create_category_index(categories)
+
             self.model_loaded = True
 
 
