@@ -7,11 +7,54 @@ from styx_msgs.msg import Lane
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 from light_classification.tl_classifier import TLClassifier
-import tf
 import cv2
 import yaml
+import tf
+import time
+import tensorflow as tfl
+import numpy as np
+import os
+import six.moves.urllib as urllib
+import sys
+import tarfile
+import zipfile
 
+from collections import defaultdict
+from io import StringIO
+from matplotlib import pyplot as plt
+from PIL import Image as Img
+
+
+# Used in Label Mapping
+from google.protobuf import text_format
+import logging
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as vis_utils
+
+#PATH_TO_FROZEN_MODEL = "/home/student/frozen_inference_graph.pb"
+PATH_TO_SIM_FROZEN_MODEL = "../frozen_inference_graph.pb"
+PATH_TO_REAL_FROZEN_MODEL = "../frozen_inference_graph.pb"
+
+
+PATH_TO_SIM_LABELS = "../traffic_light_label_map.pbtxt"
+PATH_TO_REAL_LABELS = "../traffic_light_label_map.pbtxt"
+
+NUM_CLASSES = 4
 STATE_COUNT_THRESHOLD = 3
+
+
+model_path = PATH_TO_SIM_FROZEN_MODEL
+label_path = PATH_TO_SIM_LABELS
+
+detection_graph = tfl.Graph()
+
+# Image Helper Code
+def load_image_into_numpy_array(image):
+    bridge = CvBridge()
+    cv_image = bridge.imgmsg_to_cv2(image, "rgb8")  #Might want a different Format
+    im_width = image.width
+    im_height = image.height
+    return np.array(cv_image).reshape(im_height, im_width, 3).astype(np.uint8)
 
 class TLDetector(object):
     def __init__(self):
@@ -44,10 +87,12 @@ class TLDetector(object):
         self.light_classifier = TLClassifier()
         self.listener = tf.TransformListener()
 
-        self.state = TrafficLight.UNKNOWN
-        self.last_state = TrafficLight.UNKNOWN
+        self.state = -1
+        self.last_state = -2
         self.last_wp = -1
         self.state_count = 0
+        self.state_average = [0,0,0,0]
+        self.model_loaded = False
 
         rospy.spin()
 
@@ -68,27 +113,89 @@ class TLDetector(object):
             msg (Image): image from car-mounted camera
 
         """
+
+        # Load Model
+        if (self.model_loaded == False):
+            #rospy.logwarn(msg.height)   # Height is 600
+            #rospy.logwarn(msg.width)    # Width is 800
+            #thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
+            ### Load Frozen Graph
+
+            # Determine which model to load
+            if msg.height == 600 and msg.width == 800:
+                model_path = PATH_TO_SIM_FROZEN_MODEL
+                label_path = PATH_TO_SIM_LABELS
+            else:
+                model_path = PATH_TO_REAL_FROZEN_MODEL
+                label_path = PATH_TO_REAL_LABELS
+                #rospy.logwarn("Carla")
+
+            with detection_graph.as_default():
+                od_graph_def = tfl.GraphDef()
+                with tfl.gfile.GFile(model_path, 'rb') as fid:
+                    serialized_graph = fid.read()
+                    od_graph_def.ParseFromString(serialized_graph)
+                    tfl.import_graph_def(od_graph_def, name='')
+
+            ## Load Label Map
+            label_map = label_map_util.load_labelmap(label_path)
+            categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES,
+                                                                        use_display_name=True)
+            category_index = label_map_util.create_category_index(categories)
+
+            self.model_loaded = True
+
+
         self.has_image = True
         self.camera_image = msg
-        light_wp, state = self.process_traffic_lights()
 
-        '''
-        Publish upcoming red lights at camera frequency.
-        Each predicted state has to occur `STATE_COUNT_THRESHOLD` number
-        of times till we start using it. Otherwise the previous stable state is
-        used.
-        '''
-        if self.state != state:
-            self.state_count = 0
-            self.state = state
-        elif self.state_count >= STATE_COUNT_THRESHOLD:
-            self.last_state = self.state
-            light_wp = light_wp if state == TrafficLight.RED else -1
-            self.last_wp = light_wp
-            self.upcoming_red_light_pub.publish(Int32(light_wp))
-        else:
-            self.upcoming_red_light_pub.publish(Int32(self.last_wp))
-        self.state_count += 1
+        # Load image into np array
+        image_np = load_image_into_numpy_array(msg)
+        image_np_expanded = np.expand_dims(image_np, axis=0)
+
+        ### Perform Model Prediction
+        with detection_graph.as_default():
+            with tfl.Session(graph=detection_graph) as sess:
+                image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+                detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+                detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
+                detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
+                num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+
+                # Perform Detection
+                time1 = time.time()
+                (boxes, scores, classes, num) = sess.run(
+                    [detection_boxes, detection_scores, detection_classes, num_detections],
+                    feed_dict={image_tensor: image_np_expanded})
+                #rospy.logerr('Number of detections: {}'.format(num))
+                #rospy.logerr('Classes:')
+                #rospy.logerr(classes)
+                #rospy.logerr('scores:')
+                #rospy.logerr(scores)
+                #rospy.logwarn('Time for model prediction: {}'.format(time.time() - time1))
+
+
+        # Grab the class with the heighest prediction score
+        # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
+        score = scores[0][np.argmax(scores)]
+        if (score >= .50):
+            tl_state_prediction = classes[0][np.argmax(scores)]
+        else :
+            tl_state_prediction = 1
+        tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
+        #rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
+        #rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
+
+        # If the recent state was detected 3/4 of the last detections, publish it
+        state = tl_state_prediction
+        self.state_average.pop(0)
+        self.state_average.append(state)
+        if (self.state_average.count(state) >= 3):
+            pubmsg = Int32()
+            pubmsg.data = tl_state_prediction
+            self.upcoming_red_light_pub.publish(pubmsg)
+            rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
+
 
     def get_closest_waypoint(self, pose):
         """Identifies the closest path waypoint to the given position
