@@ -1,16 +1,23 @@
 ## Capstone Project for Carla
 
+[//]: # (Image References)
+[image_pretrained_rfcn]: ./imgs/pre-trained_R-FCN_Bosch.png
+[image_generator_label_heatmap_all]: ./tl_model/images/generator_label_heatmap_all.png
+[image_generator_label_heatmap_rygo]: ./tl_model/images/generator_label_heatmap_red_yellow_green_off.png
+[image_result_real]: ./imgs/capstone_real_augmented.gif
+[image_result_sim]: ./imgs/capstone_sim_augmented.gif
+
 This is the project repo for the final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
 
 ### Team Members
 
-|   Name                            |   Udacity account email            |
-|-----------------------------------|------------------------------------|
-| John Moody (**Team Lead**)        | MoodyMusicMan at gmail.org             |
-| Jayasim Jayakumar                 | jayasim at gmail.com               |
-| Rajeev Ranjan                     | rajeev.cse.imps at gmail.com       |
-| Sven Bone                         | sven.bone at  mail.de               |
-| Bassam Sayed			            | b`underscore`sayed at icloud.com	 |
+| Name                       | Udacity account email            |
+|:---------------------------|:---------------------------------|
+| John Moody (**Team Lead**) | MoodyMusicMan at gmail.org       |
+| Jayasim Jayakumar          | jayasim at gmail.com             |
+| Rajeev Ranjan              | rajeev.cse.imps at gmail.com     |
+| Sven Bone                  | sven.bone at  mail.de            |
+| Bassam Sayed               | b`underscore`sayed at icloud.com |
 
 
 ### Project Overview
@@ -20,12 +27,89 @@ The system adapts to changing traffic patterns in order to have the vehicle arri
 
 
 ### Project Architecture
-* Nodes List
-    *subscribes
-    *Publishes
-    *Description
+- Nodes List
+    - subscribes
+    - Publishes
+    - Description
 
 ### Decision Reasoning
+
+#### Traffic Light Detection and Classification
+
+The traffic light (TL) detection and classification task can basically be realized by traditional computer vision algorithms as described e.g. in this paper [Semantic segmentation based traffic light detection at day and at night from Vladimir Haltakov,, Jakob Mayr, Christian Unger, and Slobodan Ilic](http://campar.in.tum.de/pub/haltakov2015gcpr/haltakov2015gcpr.pdf) or by Deep Neural Network (DNN) approaches. The latter one becomes very successful in public object detection challenges. In June 2017 Google released the [Tensorflow Object-Detectino API](https://research.googleblog.com/2017/06/supercharge-your-computer-vision-models.html) with a couple of [pre-trained DNN models](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) which outperforms almost all conventional approaches.
+
+The paper [Speed/accuracy trade-offs for modern convolutional object detectors](https://arxiv.org/pdf/1611.10012.pdf) gives a good overview about suitable network architectures like SSD, Fast R-CNN, Faster R-CNN and R-FCN and compares each of them regarding speed and accuracy. The TL detector shall be able to run in realtime on CARLA. Due to this restriction we decided to implement the Region-based Fully Convolutional Network (R-FCN) with ResNet-101 for the feature extractor which is a good compromise between speed and accuracy. Details about the model can be read in the paper [R-FCN: Object Detection via Region-based Fully Convolutional Networks, Jifeng Dai Yi (Microsoft Research), Li∗ Kaiming (Tsinghua University), He Jian Sun (Microsoft Research)](https://arxiv.org/pdf/1605.06409.pdf).
+
+We started with a pre-trained R-FCN ResNet-101 model from the [Tensorflow Object-Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). The model has been pre-trained on the [COCO](http://cocodataset.org) dataset and is already able to detect traffic lights on the Bosch Small Traffic Light dataset as shown in the image below.
+
+![Pre-trained R-FCN][image_pretrained_rfcn]
+
+As a next step we change the output layer to our desired classes and applied a transfer learning process. The detailed learning process is described in the [readme.md](tl_model/README.md) file.
+
+| ID | Class        |
+|:---|:-------------|
+| 1  | TL_undefined |
+| 2  | TL_red       |
+| 3  | TL_yellow    |
+| 4  | TL_green     |
+
+#### Used Datasets
+
+We applied 3 different datasets. Further details like the individual label position distribution, type of labels, etc. are described in the [readme.md](tl_model/README.md) file in chapter "Datasets".
+
+| Dataset                                          | Content                                                                                                                                                                                                                  |
+|:-------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Bosch Small Traffic Light Dataset                | - 5093 images<br>- 10756 labeled traffic lights<br>- Image size: 1280x720x3<br>- Image format: 8 bit RGB, reconstructed from RIIB 12 bit (red-clear-clear-blue)<br>- Source: https://hci.iwr.uni-heidelberg.de/node/6132 |
+| Exported images from the Udacity ROS bag         | - 159 images<br>- 159 labeled traffic lights<br>- Image size: 1368x1096x3<br>- Image format: 8 bit RGB                                                                                                                   |
+| Exported images from he Udacity Term 3 simulator | - 277 images<br>- 670 labeled traffic lights<br>- Image size: 800x600x3<br>- Image format: 8 bit RGB                                                                                                                     |
+
+#### Data Augmentation
+
+The individual datasets are extremely unbalanced. In the Bosch small traffic light dataset the labeled traffic lights are almost located in the top right quarter of the image, whereas in the Udacity site ROS bag they are located 100% on the left half of the image. Furthermore, the size of the traffic lights and class distribution (red, yellow, green, undefined) vary a lot between the datasets.
+
+To balance the dataset, 65% of the whole dataset has been augmented by the following methods. Each  augmentation method has been combined by its own probability.
+
+- random translation: tx_max=+/-70, ty_max=+70, probability=20%
+- random horizontal flip, probability=50%
+- random brightness, probability=20%
+
+For the model training process we implemented a generator which theoretically generates a endless number of images with random augmentation. The following graphs show the total and the individual class label (red, yellow, green and undefined) position distribution after image augmentation. In total we generated 15000 images for the model training and split them into a 90% training and 10% validation dataset.
+
+![Generator Label Heatmnap All][image_generator_label_heatmap_all]
+
+![Generator Label Heatmnap Red, Yellow, Green, Off][image_generator_label_heatmap_rygo]
+
+#### Achieved TL R-FCN Model Performance
+
+For the performance measurement we used the split validation dataset and calculated the Average Precision (AP@IOU0.5) for each class (red, yellow and green) and the Mean Average Precision (mAP@0.5IOU) over all classes according the [PASCAL VOC 2017](http://host.robots.ox.ac.uk/pascal/VOC/voc2007/devkit_doc_07-Jun-2007.pdf) definition.
+
+The AP and mAP values are calculated based on the Intersection-of-Union (IOU), number of True Positives (TP) and number of False Positives (FP) and thus do not consider the False Negatives (FN). Our actual model achieves high precision values but sporadically do not detect yellow traffic lights for 1-2 frames.
+
+**Udacity Site**
+
+| Class               | Precision  |
+|:--------------------|:-----------|
+| AP@0.5IOU TL_red    | 1.0000     |
+| AP@0.5IOU TL_yellow | 1.0000     |
+| AP@0.5IOU TL_green  | 1.0000     |
+| **mAP@0.5IOU**      | **1.0000** |
+
+![TL Detection Real][image_result_real]
+
+**Udacity Simulator**
+
+| Class               | Precision  |
+|:--------------------|:-----------|
+| AP@0.5IOU TL_red    | 0.9831     |
+| AP@0.5IOU TL_yellow | 1.0000     |
+| AP@0.5IOU TL_green  | 1.0000     |
+| **mAP@0.5IOU**      | **0.9944** |
+
+![TL Detection Sim][image_result_sim]
+
+**Timings**
+
+***add timing box plot here***
 
 ### Dependencies
 
@@ -35,7 +119,7 @@ The system adapts to changing traffic patterns in order to have the vehicle arri
 ### How DBW Works?
 We have created a TwistController class from twist_controller.py which will be used for implementing the necessary controllers. The throttle values passed to publish should be in the range 0 to 1, although a throttle of 1 means the vehicle throttle will be fully engaged. Brake values passed to publish should be in units of torque (N*m). The correct values for brake can be computed using the desired acceleration, weight of the vehicle, and wheel radius.
 
-Here we will subscribe to `/twist_cmd` message which provides the proposed linear and angular velocities. Yawcontroller is used to convert target linear and angular velocity to steering commands. `/current_velocity` provides the velocity of the vehicle from simulator. 
+Here we will subscribe to `/twist_cmd` message which provides the proposed linear and angular velocities. Yawcontroller is used to convert target linear and angular velocity to steering commands. `/current_velocity` provides the velocity of the vehicle from simulator.
 
 One thing to keep in mind while building this node and the `twist_controller` class is the status
 of `dbw_enabled`. While in the simulator, its enabled all the time, in the real car, that will
@@ -47,11 +131,11 @@ We have currently set up to publish steering, throttle, and brake commands at 50
 
 ### Export Images from Simulator and ROS Bags
 
-The image export node `tl_image_extractor.py` can be configured by its launch files. There are basically two launch files, one for 
-the simulator setup `tl_image_extractor.launch` and one for the rosbag setup `tl_image_extractor_site.launch`. 
+The image export node `tl_image_extractor.py` can be configured by its launch files. There are basically two launch files, one for
+the simulator setup `tl_image_extractor.launch` and one for the rosbag setup `tl_image_extractor_site.launch`.
 
 **Attention:**
-If you have resource limitations on your PC, ensure to deactivate the OpenCV image visualization by setting 
+If you have resource limitations on your PC, ensure to deactivate the OpenCV image visualization by setting
 `export_show_image` to `False` in both launch files.
 
 **Parameters**
