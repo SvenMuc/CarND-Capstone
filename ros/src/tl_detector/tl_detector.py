@@ -125,8 +125,11 @@ class TLDetector(object):
             ### Load Frozen Graph
 
             if msg.height == 600 and msg.width == 800:
-                rospy.logwarn("Detected")
+                model_path = PATH_TO_SIM_FROZEN_MODEL
+                label_path = PATH_TO_SIM_LABELS
             else:
+                model_path = PATH_TO_REAL_FROZEN_MODEL
+                label_path = PATH_TO_REAL_LABELS
                 rospy.logwarn("Did not work")
 
             with detection_graph.as_default():
