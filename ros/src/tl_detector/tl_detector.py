@@ -44,7 +44,7 @@ STATE_COUNT_THRESHOLD = 3
 
 
 model_path = PATH_TO_SIM_FROZEN_MODEL
-label_map = PATH_TO_SIM_LABELS
+label_path = PATH_TO_SIM_LABELS
 
 ### Load Frozen Graph
 detection_graph = tfl.Graph()
@@ -129,7 +129,7 @@ class TLDetector(object):
             rospy.logwarn(msg.height)
             rospy.logwarn(msg.width)
 
-            
+
             #thaw_Model(PATH_TO_SIM_FROZEN_MODEL, PATH_TO_SIM_LABELS)
             self.model_loaded = True
 
