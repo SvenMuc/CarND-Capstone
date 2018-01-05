@@ -36,7 +36,7 @@ PATH_TO_SIM_FROZEN_MODEL = "../frozen_inference_graph.pb"
 PATH_TO_REAL_FROZEN_MODEL = "../frozen_inference_graph.pb"
 
 
-PATH_TO_SIM_LABELS = "../object_detection/tl_model_config/traffic_light_label_map.pbtxt"
+PATH_TO_SIM_LABELS = "../traffic_light_label_map.pbtxt"
 PATH_TO_REAL_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
 
 NUM_CLASSES = 4
