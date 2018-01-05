@@ -37,7 +37,7 @@ PATH_TO_REAL_FROZEN_MODEL = "../frozen_inference_graph.pb"
 
 
 PATH_TO_SIM_LABELS = "../traffic_light_label_map.pbtxt"
-PATH_TO_REAL_LABELS = "/home/student/CarND-Capstone/ros/src/tl_detector/object_detection/tl_model_config/traffic_light_label_map.pbtxt"
+PATH_TO_REAL_LABELS = "../traffic_light_label_map.pbtxt"
 
 NUM_CLASSES = 4
 STATE_COUNT_THRESHOLD = 3
@@ -130,7 +130,7 @@ class TLDetector(object):
             else:
                 model_path = PATH_TO_REAL_FROZEN_MODEL
                 label_path = PATH_TO_REAL_LABELS
-                rospy.logwarn("Did not work")
+                #rospy.logwarn("Carla")
 
             with detection_graph.as_default():
                 od_graph_def = tfl.GraphDef()
