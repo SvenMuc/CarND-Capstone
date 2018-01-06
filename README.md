@@ -6,6 +6,7 @@
 [image_generator_label_heatmap_rygo]: ./tl_model/images/generator_label_heatmap_red_yellow_green_off.png
 [image_result_real]: ./imgs/capstone_real_augmented.gif
 [image_result_sim]: ./imgs/capstone_sim_augmented.gif
+[image_timings]: ./imgs/r-fcn_timings.png
 
 This is the project repo for the final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
 
@@ -109,7 +110,11 @@ The AP and mAP values are calculated based on the Intersection-of-Union (IOU), n
 
 **Timings**
 
-***add timing box plot here***
+The final R-FCN Traffic Light model has been froozen and pruned and thus is able to run in realtime with **mean=61.19 ms** (min=59.54ms, max=65.12ms) on a PC with NVIDIA GPU (AMD Ryzen 7 1700 8-CoreProcessor, NVIDA GeForce GTX1080 Ti). On a actual CPU (3,1 GHz Intel Core i7) the model needs around 2 s to process one image.
+
+The box plot below summarizes the timings we need to process one image with different image resolutions. We achieve best results (mean=61.19 ms, min=59.54ms, max=65.12ms) with a resolution of 1368x1096 which is exactly the resolution of the camera used in CARLA.
+
+![R-FCN Timings][image_timings]
 
 ### Dependencies
 
