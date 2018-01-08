@@ -146,7 +146,7 @@ class TLDetector(object):
         self.camera_image = msg
 
         rospy.logwarn("Begining image processing")
-        self.process_image()
+        #self.process_image()
         
         # Load image into np array
 
@@ -214,7 +214,6 @@ class TLDetector(object):
             pubmsg.data = tl_state_prediction
             self.upcoming_red_light_pub.publish(pubmsg)
             #rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
-
 
     def get_closest_waypoint(self, pose):
         """Identifies the closest path waypoint to the given position
@@ -317,6 +316,10 @@ class TLDetector(object):
                                 lineType=1)
         return image
 
+    def my_callback(self):
+        print 'Timer called at' + str(event.current_real)
+
+    rospy.Timer(rospy.Duration(2), my_callback)
 
 if __name__ == '__main__':
     try:
