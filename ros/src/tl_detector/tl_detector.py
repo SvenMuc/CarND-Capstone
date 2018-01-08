@@ -146,11 +146,12 @@ class TLDetector(object):
 
         self.has_image = True
         self.camera_image = msg
-
         rospy.logwarn("Begining image processing")
-        #self.process_image()
-        
-        # Load image into np array
+
+        if self.processing == False:
+            self.processing = True
+            self.process_image()
+            self.processing = False
 
     def process_image(self):
         ### Perform Model Prediction
