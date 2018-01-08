@@ -143,77 +143,78 @@ class TLDetector(object):
 
 
 
-        if self.processing == False:
-            self.processing == True
 
 
 
-            #if self.model_loaded is False:
-            #    return
 
-            self.has_image = True
-            self.camera_image = msg
+        #if self.model_loaded is False:
+        #    return
 
-            # Load image into np array
-            image_np = load_image_into_numpy_array(msg)
-            image_np_expanded = np.expand_dims(image_np, axis=0)
+        self.has_image = True
+        self.camera_image = msg
 
-            ### Perform Model Prediction
-            with detection_graph.as_default():
-                with tfl.Session(graph=detection_graph) as sess:
-                    image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
-                    detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
-                    detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
-                    detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
-                    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+        process_image(msg)
+        
+        # Load image into np array
+        image_np = load_image_into_numpy_array(msg)
+        image_np_expanded = np.expand_dims(image_np, axis=0)
 
-                    # Perform Detection
-                    time1 = time.time()
-                    (boxes, scores, classes, num) = sess.run(
-                        [detection_boxes, detection_scores, detection_classes, num_detections],
-                        feed_dict={image_tensor: image_np_expanded})
-                    delta_time = time.time() - time1
-                    #rospy.logerr('Number of detections: {}'.format(num))
-                    #rospy.logerr('Classes:')
-                    #rospy.logerr(classes)
-                    #rospy.logerr('scores:')
-                    #rospy.logerr(scores)
+    def process_image(self, image):
+        ### Perform Model Prediction
+        with detection_graph.as_default():
+            with tfl.Session(graph=detection_graph) as sess:
+                image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+                detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+                detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
+                detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
+                num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 
-                    if delta_time > 1.0:
-                        rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
+                # Perform Detection
+                time1 = time.time()
+                (boxes, scores, classes, num) = sess.run(
+                    [detection_boxes, detection_scores, detection_classes, num_detections],
+                    feed_dict={image_tensor: image_np_expanded})
+                delta_time = time.time() - time1
+                #rospy.logerr('Number of detections: {}'.format(num))
+                #rospy.logerr('Classes:')
+                #rospy.logerr(classes)
+                #rospy.logerr('scores:')
+                #rospy.logerr(scores)
 
-                    # Publish TL overlay image for debgging if activated in the launch file
-                    if self.tl_show_detector_results is True:
-                        rospy.loginfo('Top 10 Classes: {}'.format(classes[0, 0:10]))
-                        rospy.loginfo('Top 10 Scores: {}'.format(scores[0, 0:10]))
-                        image_np = self.draw_bounding_boxes(image_np, boxes, scores, classes, min_score_thresh=0.5, line_thickness=2)
+                if delta_time > 1.0:
+                    rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
 
-                        try:
-                            self.pub_image_tl_overlay.publish(self.bridge.cv2_to_imgmsg(image_np, "rgb8"))
-                        except CvBridgeError as e:
-                            print(e)
+                # Publish TL overlay image for debgging if activated in the launch file
+                if self.tl_show_detector_results is True:
+                    rospy.loginfo('Top 10 Classes: {}'.format(classes[0, 0:10]))
+                    rospy.loginfo('Top 10 Scores: {}'.format(scores[0, 0:10]))
+                    image_np = self.draw_bounding_boxes(image_np, boxes, scores, classes, min_score_thresh=0.5, line_thickness=2)
 
-            self.proccessing = False
-            # Grab the class with the heighest prediction score
-            # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
-            score = scores[0][np.argmax(scores)]
-            if (score >= .50):
-                tl_state_prediction = classes[0][np.argmax(scores)]
-            else :
-                tl_state_prediction = 1
-            tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
-            rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
-            rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
+                    try:
+                        self.pub_image_tl_overlay.publish(self.bridge.cv2_to_imgmsg(image_np, "rgb8"))
+                    except CvBridgeError as e:
+                        print(e)
 
-            # If the recent state was detected 3/4 of the last detections, publish it
-            state = tl_state_prediction
-            self.state_average.pop(0)
-            self.state_average.append(state)
-            if (self.state_average.count(state) >= 3):
-                pubmsg = Int32()
-                pubmsg.data = tl_state_prediction
-                self.upcoming_red_light_pub.publish(pubmsg)
-                #rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
+        # Grab the class with the heighest prediction score
+        # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
+        score = scores[0][np.argmax(scores)]
+        if (score >= .50):
+            tl_state_prediction = classes[0][np.argmax(scores)]
+        else :
+            tl_state_prediction = 1
+        tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
+        rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
+        rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
+
+        # If the recent state was detected 3/4 of the last detections, publish it
+        state = tl_state_prediction
+        self.state_average.pop(0)
+        self.state_average.append(state)
+        if (self.state_average.count(state) >= 3):
+            pubmsg = Int32()
+            pubmsg.data = tl_state_prediction
+            self.upcoming_red_light_pub.publish(pubmsg)
+            #rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state]))
 
 
     def get_closest_waypoint(self, pose):
