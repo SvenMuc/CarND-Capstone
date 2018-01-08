@@ -63,7 +63,7 @@ class TLDetector(object):
         self.camera_image = None
         self.lights = []
 
-	# get parameters from launch file
+        # get parameters from launch file
         self.tl_show_detector_results = rospy.get_param('debug_tl_detector', False)
         
         if self.tl_show_detector_results is True:
@@ -85,7 +85,7 @@ class TLDetector(object):
         rely on the position of the light and the camera image to predict it.
         '''
         sub3 = rospy.Subscriber('/vehicle/traffic_lights', TrafficLightArray, self.traffic_cb)
-        sub6 = rospy.Subscriber('/image_color', Image, self.image_cb)
+        sub6 = rospy.Subscriber('/image_color', Image, self.image_cb, queue_size = 1)
 
         config_string = rospy.get_param("/traffic_light_config")
         self.config = yaml.load(config_string)
@@ -107,7 +107,7 @@ class TLDetector(object):
         if (self.model_loaded == False):
             rospy.loginfo('Loading the TL model...') 
             model_path = PATH_TO_REAL_FROZEN_MODEL
-            label_path = PATH_TO_REAL_LABELS
+            #label_path = PATH_TO_REAL_LABELS   #Only used in model training, not needed for implementation
  
             with detection_graph.as_default():
                 od_graph_def = tfl.GraphDef()
