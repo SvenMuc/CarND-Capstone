@@ -85,7 +85,7 @@ class TLDetector(object):
         rely on the position of the light and the camera image to predict it.
         '''
         sub3 = rospy.Subscriber('/vehicle/traffic_lights', TrafficLightArray, self.traffic_cb)
-        sub6 = rospy.Subscriber('/image_color', Image, self.image_cb, queue_size = 1)
+        sub6 = rospy.Subscriber('/image_color', Image, self.image_cb, queue_size = 1, buff_size=2**24)
 
         config_string = rospy.get_param("/traffic_light_config")
         self.config = yaml.load(config_string)
@@ -148,10 +148,8 @@ class TLDetector(object):
         self.camera_image = msg
         rospy.logwarn("Begining image processing")
 
-        if self.processing == False:
-            self.processing = True
-            self.process_image()
-            self.processing = False
+        self.process_image()
+
 
     def process_image(self):
         ### Perform Model Prediction
