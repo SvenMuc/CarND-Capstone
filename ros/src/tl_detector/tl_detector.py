@@ -96,7 +96,7 @@ class TLDetector(object):
         self.light_classifier = TLClassifier()
         self.listener = tf.TransformListener()
 
-        self.proccessing = False
+        self.processing = False
         self.state = -1
         self.last_state = -2
         self.last_wp = -1
