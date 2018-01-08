@@ -122,7 +122,7 @@ class TLDetector(object):
 
         #self.process_image()
 
-        rospy.Timer(rospy.Duration(2), my_callback)
+        #rospy.Timer(rospy.Duration(2), my_callback)
 
         rospy.spin()
 
