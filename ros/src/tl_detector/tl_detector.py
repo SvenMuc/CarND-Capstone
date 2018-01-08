@@ -122,6 +122,8 @@ class TLDetector(object):
 
         #self.process_image()
 
+        rospy.Timer(rospy.Duration(2), my_callback)
+
         rospy.spin()
 
     def pose_cb(self, msg):
@@ -319,7 +321,7 @@ class TLDetector(object):
     def my_callback(self):
         rospy.logwarn('Timer called at')
 
-    rospy.Timer(rospy.Duration(2), my_callback)
+
 
 if __name__ == '__main__':
     try:
