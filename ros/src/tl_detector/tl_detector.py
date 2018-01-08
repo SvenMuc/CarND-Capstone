@@ -317,7 +317,7 @@ class TLDetector(object):
         return image
 
     def my_callback(self):
-        print 'Timer called at' + str(event.current_real)
+        rospy.logwarn('Timer called at')
 
     rospy.Timer(rospy.Duration(2), my_callback)
 
