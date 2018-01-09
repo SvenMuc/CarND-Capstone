@@ -148,8 +148,6 @@ class TLDetector(object):
     def process_image(self):
         ### Perform Model Prediction
 
-
-        #while(1):
         if self.has_image == True:
             image = self.camera_image
             image_np = load_image_into_numpy_array(image)
@@ -189,8 +187,6 @@ class TLDetector(object):
                         except CvBridgeError as e:
                             print(e)
 
-        self.has_image = True
-        self.camera_image = msg
 
         # Load image into np array
         image_np = load_image_into_numpy_array(msg)
