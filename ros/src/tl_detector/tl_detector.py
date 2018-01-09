@@ -189,6 +189,49 @@ class TLDetector(object):
                         except CvBridgeError as e:
                             print(e)
 
+        self.has_image = True
+        self.camera_image = msg
+
+        # Load image into np array
+        image_np = load_image_into_numpy_array(msg)
+        image_np_expanded = np.expand_dims(image_np, axis=0)
+
+        ### Perform Model Prediction
+        with detection_graph.as_default():
+            with tfl.Session(graph=detection_graph) as sess:
+                image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+                detection_boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+                detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
+                detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
+                num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+
+                # Perform Detection
+                time1 = time.time()
+                (boxes, scores, classes, num) = sess.run(
+                    [detection_boxes, detection_scores, detection_classes, num_detections],
+                    feed_dict={image_tensor: image_np_expanded})
+                delta_time = time.time() - time1
+                #rospy.logerr('Number of detections: {}'.format(num))
+                #rospy.logerr('Classes:')
+                #rospy.logerr(classes)
+                #rospy.logerr('scores:')
+                #rospy.logerr(scores)
+
+                if delta_time > 1.0:
+                    rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
+
+                # Publish TL overlay image for debgging if activated in the launch file
+                if self.tl_show_detector_results is True:
+                    rospy.loginfo('Top 10 Classes: {}'.format(classes[0, 0:10]))
+                    rospy.loginfo('Top 10 Scores: {}'.format(scores[0, 0:10]))
+                    image_np = self.draw_bounding_boxes(image_np, boxes, scores, classes, min_score_thresh=0.5, line_thickness=2)
+
+                    try:
+                        self.pub_image_tl_overlay.publish(self.bridge.cv2_to_imgmsg(image_np, "rgb8"))
+                    except CvBridgeError as e:
+                        print(e)
+
+
         # Grab the class with the heighest prediction score
         # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green
         score = scores[0][np.argmax(scores)]
@@ -197,6 +240,7 @@ class TLDetector(object):
         else :
             tl_state_prediction = 1
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
+
         #rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
         #rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
 
