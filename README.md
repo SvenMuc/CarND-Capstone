@@ -8,28 +8,91 @@
 [image_result_sim]: ./imgs/capstone_sim_augmented.gif
 [image_timings]: ./imgs/r-fcn_timings.png
 [team_members_emails]: ./imgs/final_project_emails.PNG
+[system_architecture]:./imgs/System_Architecture.PNG
 This is the project repo for the final project of the Udacity Self-Driving Car Nanodegree: Programming a Real Self-Driving Car. For more information about the project, see the project introduction [here](https://classroom.udacity.com/nanodegrees/nd013/parts/6047fe34-d93c-4f50-8336-b70ef10cb4b2/modules/e1a23b06-329a-4684-a717-ad476f0d8dff/lessons/462c933d-9f24-42d3-8bdc-a08a5fc866e4/concepts/5ab4b122-83e6-436d-850f-9f4d26627fd9).
 
-### Team Members
+#### Team Members
 ![Team Members and Emails][team_members_emails]
 
+### Appendix
+1. Project Overview
+2. Project Architecture
+3. Decisions and Reasoning
+4. Dependencies
+5. Trouble Shooting
 
 ### Project Overview
 
 This project uses ROS and python in order to implement a waypoint follower for an autonomous vehicle. The vehicle uses an
 image recognition model developed with tensorflow to detect traffic lights from a dashboard mounted camera, and will adapt
-behaviour accordingly. The vehicle has a maximum set speed of 25 mp/h, and can be switched from back and forth from manual
+behaviour accordingly. The vehicle has a maximum set speed of 25 mp/h, and can be switched back and forth from manual
 to autonomous driving.
 
 Additionally, the code was developed and tested on a simulator, and will be further tested on Udacity's self driving
 vehicle, Carla.
 
+The project was developed on Ubunutu 16.04, and ROS Kinetic Kame
+
 
 ### Project Architecture
-- Nodes List
-    - subscribes
-    - Publishes
-    - Description
+
+The code follows the below architecture (image provided by Udacity)
+![System Architecture][system_architecture]
+
+As evidenced in the image, the code is broken into *Perception*, *Planing*, and *Control* blocks which receive data from
+and push data to a Car/Simulator.
+
+#### Perception
+ The perception block is responsible for observing and processing data from the environment around the vehicle. It consists
+ largely of two nodes, *Traffic Light Detection* and *Object Detection*, which are responsible for using the dashboard
+ camera (dashcam) to detect relevant objects.
+
+##### Traffic Light Detection
+ Traffic light detection is responsible for detecting and classifying traffic lights in images provided by the dashcam.
+ These images are given a classification of Red/Yellow/Green/None, and an accompanying confidence score. If a Red or Yellow
+ light is detected in the image with a sufficient confidence score, a message is published to our Waypoint Updater node.
+ More on our method of Traffic Light Detection in the Decisions and Reasoning section.
+
+##### Obstacle detection
+ Obstacle detection is currently unimplemented, though could be implemented by broadining the number of classes detected
+ by the image processing model.
+
+#### Planing
+ The planning block is responsible to determining the path and speed of the vehicle. An orriginal course is plotted from
+ starting point to destination, and is updated in real time based off information received from the Perception block. This
+ is done using the *Waypoint Loader* and *Waypoint Updater* Nodes.
+
+##### Waypoint Loader
+ Waypoint loader is responsible for retrieving the intial waypoints from a file stored in the /data directory. The file
+  retrieved is influenced by the launch file. Additionally, this functionality could be applied to waypoint
+  files generated for custom paths.
+
+  Waypoint loader is only sends the waypoints once, and has no function after that.
+
+##### Waypoint Updater
+ Waypoint updater is responsible for determining the next 50 waypoints the vehicle should travel to, and at what speeds
+ the vehicle should be at for each of those waypoints. This is done by taking in localization information from the car/simulator
+ and traffic light data from the *Perception* block; this data is then processed in order to determine at which waypoints
+ the car should stop next (if it should stop), and at what speeds should the car be going at preceding waypoints to stop
+ safely and comfortably. These waypoints are then passed to the *Control* block by publishing to the /final_waypoints topic.
+
+#### Control
+ The control block is responsible for interfacing the vehicle Drive By Wire (DBW) commands and the desired waypoint locations
+ and speeds. This block consists of the *DBW* and *Waypoint Follower* Nodes.
+
+##### DBW Node
+ DBW is responsible for taking in the current velocity of the car, current car position, suggested linear velocity, suggested
+ angular velocity, and will use these to determine what throttle, steering, and brake commands to publish (which are picked up
+ by the simulator, or real vehicles actuators/electronic controls system).
+
+ The throttle values passed to publish should be in the range 0 to 1 (a throttle of 1 means the vehicle throttle will be fully engaged).
+ Brake values passed to publish should be in units of torque (N*m). The correct values for brake were computed using
+ the desired acceleration, weight of the vehicle, and wheel radius.
+
+##### Waypoint Follower
+ Waypoint follower node is a C++ program written by the firm Autoware. It is responsible for taking in a list of desired
+ waypoints and velocities at those waypoints, and publishing the linear and angular velocity the car should achieve to meet
+ those waypoints.
 
 ### Decision Reasoning
 
