@@ -206,8 +206,7 @@ The image export node `tl_image_extractor.py` can be configured by its launch fi
 simulator. There are basically two launch files, one for the simulator setup `tl_image_extractor.launch` and one for the
 rosbag setup `tl_image_extractor_site.launch`. Follow the **Parameters** guide below to assist in setting up the launch file.
 
-###### **Attention:** If you have resource limitations on your PC, ensure to deactivate the OpenCV image visualization by setting
-`export_show_image` to `False` in both launch files.
+##### **Attention:** If you have resource limitations on your PC, ensure to deactivate the OpenCV image visualization by setting `export_show_image` to `False` in both launch files.
 
 ##### Parameters
 ```
