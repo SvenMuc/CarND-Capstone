@@ -19,7 +19,6 @@ This is the project repo for the final project of the Udacity Self-Driving Car N
 2. Project Architecture
 3. Traffic Light Model
 4. Dependencies
-5. Trouble Shooting
 
 ### Project Overview
 
@@ -151,7 +150,12 @@ performed with the listed probability.
 | Random Horizontal flip | 50%|
 | Random Brightness | 20%|
 
-For the model training process we implemented a generator which theoretically generates a endless number of images with random augmentation. The following graphs show the total and the individual class label (red, yellow, green and undefined) position distribution after image augmentation. In total we generated 15000 images for the model training and split them into a 90% training and 10% validation dataset.
+
+#### Training
+For the model training process we implemented a generator which theoretically generates a endless number of images with
+random augmentation. The following graphs show the total and the individual class label (red, yellow, green and undefined)
+position distribution after image augmentation. In total we generated 15000 images for the model training and split them
+into a 90% training and 10% validation dataset.
 
 ![Generator Label Heatmnap All][image_generator_label_heatmap_all]
 
@@ -185,22 +189,24 @@ The AP and mAP values are calculated based on the Intersection-of-Union (IOU), n
 
 ![TL Detection Sim][image_result_sim]
 
-**Timings**
+#### Processing Timings
 
-The final R-FCN Traffic Light model has been froozen and pruned and thus is able to run in realtime with **mean=61.19 ms** (min=59.54ms, max=65.12ms) on a PC with NVIDIA GPU (AMD Ryzen 7 1700 8-CoreProcessor, NVIDA GeForce GTX1080 Ti). On a actual CPU (3,1 GHz Intel Core i7) the model needs around 2 s to process one image.
+The final R-FCN Traffic Light model has been frozen and pruned and thus is able to run in realtime with **mean=61.19 ms** (min=59.54ms, max=65.12ms) on a PC with NVIDIA GPU (AMD Ryzen 7 1700 8-CoreProcessor, NVIDA GeForce GTX1080 Ti). On a actual CPU (3.1 GHz Intel Core i7) the model needs around 2 s to process one image.
 
-The box plot below summarizes the timings we need to process one image with different image resolutions. We achieve best results (mean=61.19 ms, min=59.54ms, max=65.12ms) with a resolution of 1368x1096 which is exactly the resolution of the camera used in CARLA.
+The box plot below summarizes the timings needed to process images with different resolutions. We achieve best results
+(mean=61.19 ms, min=59.54ms, max=65.12ms) with a resolution of 1368x1096 which is exactly the resolution of the camera
+used in CARLA.
 
 ![R-FCN Timings][image_timings]
 
 
 #### Export Images from Simulator and ROS Bags
 
-The image export node `tl_image_extractor.py` can be configured by its launch files. There are basically two launch files, one for
-the simulator setup `tl_image_extractor.launch` and one for the rosbag setup `tl_image_extractor_site.launch`.
+The image export node `tl_image_extractor.py` can be configured by its launch files and will export images from the udacity
+simulator. There are basically two launch files, one for the simulator setup `tl_image_extractor.launch` and one for the
+rosbag setup `tl_image_extractor_site.launch`. Follow the **Parameters** guide below to assist in setting up the launch file.
 
-**Attention:**
-If you have resource limitations on your PC, ensure to deactivate the OpenCV image visualization by setting
+###### **Attention:** If you have resource limitations on your PC, ensure to deactivate the OpenCV image visualization by setting
 `export_show_image` to `False` in both launch files.
 
 **Parameters**
@@ -292,6 +298,3 @@ roslaunch launch/site.launch
 ```
 5. Confirm that traffic light detection works on real life images
 
-
-## Trouble Shooting
-To Come
