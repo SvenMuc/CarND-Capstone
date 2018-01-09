@@ -177,25 +177,8 @@ The box plot below summarizes the timings we need to process one image with diff
 
 ![R-FCN Timings][image_timings]
 
-### Dependencies
 
-### Trouble Shooting
-
-
-### How DBW Works?
-We have created a TwistController class from twist_controller.py which will be used for implementing the necessary controllers. The throttle values passed to publish should be in the range 0 to 1, although a throttle of 1 means the vehicle throttle will be fully engaged. Brake values passed to publish should be in units of torque (N*m). The correct values for brake can be computed using the desired acceleration, weight of the vehicle, and wheel radius.
-
-Here we will subscribe to `/twist_cmd` message which provides the proposed linear and angular velocities. Yawcontroller is used to convert target linear and angular velocity to steering commands. `/current_velocity` provides the velocity of the vehicle from simulator.
-
-One thing to keep in mind while building this node and the `twist_controller` class is the status
-of `dbw_enabled`. While in the simulator, its enabled all the time, in the real car, that will
-not be the case. This may cause PID controller to accumulate error because the car could
-temporarily be driven by a human instead of your controller.
-
-Once we have the proposed throttle, brake, and steer values, we published it on the various publishers.
-We have currently set up to publish steering, throttle, and brake commands at 50hz.  The DBW system on Carla expects messages at this frequency, and will disengage (reverting control back to the driver) if control messages are published at less than 10hz. This is a safety feature on the car intended to return control to the driver if the software system crashes.
-
-### Export Images from Simulator and ROS Bags
+#### Export Images from Simulator and ROS Bags
 
 The image export node `tl_image_extractor.py` can be configured by its launch files. There are basically two launch files, one for
 the simulator setup `tl_image_extractor.launch` and one for the rosbag setup `tl_image_extractor_site.launch`.
@@ -224,6 +207,9 @@ If you have resource limitations on your PC, ensure to deactivate the OpenCV ima
 2. Start the image extractor node by `roslaunch launch/site_image_extractor.launch`
 3. Run ROS bag player by `rosbag play ./bags/just_traffic_light.bag`
 
+
+## Dependencies
+
 ### Native Installation
 
 * Be sure that your workstation is running Ubuntu 16.04 Xenial Xerus or Ubuntu 14.04 Trusty Tahir. [Ubuntu downloads can be found here](https://www.ubuntu.com/download/desktop).
@@ -231,8 +217,6 @@ If you have resource limitations on your PC, ensure to deactivate the OpenCV ima
   * 2 CPU
   * 2 GB system memory
   * 25 GB of free hard drive space
-
-  The Udacity provided virtual machine has ROS and Dataspeed DBW already installed, so you can skip the next two steps if you are using this.
 
 * Follow these instructions to install ROS
   * [ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) if you have Ubuntu 16.04.
@@ -291,3 +275,7 @@ cd CarND-Capstone/ros
 roslaunch launch/site.launch
 ```
 5. Confirm that traffic light detection works on real life images
+
+
+## Trouble Shooting
+To Come
