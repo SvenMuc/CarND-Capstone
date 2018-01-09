@@ -118,11 +118,7 @@ class TLDetector(object):
                     tfl.import_graph_def(od_graph_def, name='')
 
             self.model_loaded = True
-            rospy.loginfo('TL model loaded.') 
-
-        #self.process_image()
-
-        #rospy.Timer(rospy.Duration(2), my_callback)
+            rospy.loginfo('TL model loaded.')
 
         rospy.spin()
 
@@ -146,8 +142,6 @@ class TLDetector(object):
 
         self.has_image = True
         self.camera_image = msg
-        rospy.logwarn("Begining image processing")
-
         self.process_image()
 
 
@@ -203,8 +197,8 @@ class TLDetector(object):
         else :
             tl_state_prediction = 1
         tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
-        rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
-        rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
+        #rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
+        #rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
 
         # If the recent state was detected 3/4 of the last detections, publish it
         state = tl_state_prediction
