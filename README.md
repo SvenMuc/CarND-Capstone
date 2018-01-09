@@ -17,7 +17,7 @@ This is the project repo for the final project of the Udacity Self-Driving Car N
 ### Appendix
 1. Project Overview
 2. Project Architecture
-3. Decisions and Reasoning
+3. Traffic Light Model
 4. Dependencies
 5. Trouble Shooting
 
@@ -94,13 +94,24 @@ and push data to a Car/Simulator.
  waypoints and velocities at those waypoints, and publishing the linear and angular velocity the car should achieve to meet
  those waypoints.
 
-### Decision Reasoning
+### Traffic Light Model
 
-#### Traffic Light Detection and Classification
+The traffic light (TL) detection and classification task can basically be realized by traditional computer vision algorithms
+as described e.g. in this paper [Semantic segmentation based traffic light detection at day and at night from Vladimir Haltakov,, Jakob Mayr, Christian Unger, and Slobodan Ilic](http://campar.in.tum.de/pub/haltakov2015gcpr/haltakov2015gcpr.pdf)
+or by Deep Neural Network (DNN) approaches, with the latter being very successful in recent public object detection challenges.
+In fact, in June 2017 Google released the [Tensorflow Object-Detection API](https://research.googleblog.com/2017/06/supercharge-your-computer-vision-models.html)
+with a couple of [pre-trained DNN models](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+which outperforms almost all conventional approaches. Due to the recent succes of DNN's for image classification, and
+the availability of resources, we chose to persue a DNN method for our Traffic Light Classifier.
 
-The traffic light (TL) detection and classification task can basically be realized by traditional computer vision algorithms as described e.g. in this paper [Semantic segmentation based traffic light detection at day and at night from Vladimir Haltakov,, Jakob Mayr, Christian Unger, and Slobodan Ilic](http://campar.in.tum.de/pub/haltakov2015gcpr/haltakov2015gcpr.pdf) or by Deep Neural Network (DNN) approaches. The latter one becomes very successful in public object detection challenges. In June 2017 Google released the [Tensorflow Object-Detectino API](https://research.googleblog.com/2017/06/supercharge-your-computer-vision-models.html) with a couple of [pre-trained DNN models](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md) which outperforms almost all conventional approaches.
 
-The paper [Speed/accuracy trade-offs for modern convolutional object detectors](https://arxiv.org/pdf/1611.10012.pdf) gives a good overview about suitable network architectures like SSD, Fast R-CNN, Faster R-CNN and R-FCN and compares each of them regarding speed and accuracy. The TL detector shall be able to run in realtime on CARLA. Due to this restriction we decided to implement the Region-based Fully Convolutional Network (R-FCN) with ResNet-101 for the feature extractor which is a good compromise between speed and accuracy. Details about the model can be read in the paper [R-FCN: Object Detection via Region-based Fully Convolutional Networks, Jifeng Dai Yi (Microsoft Research), Li∗ Kaiming (Tsinghua University), He Jian Sun (Microsoft Research)](https://arxiv.org/pdf/1605.06409.pdf).
+
+The paper [Speed/accuracy trade-offs for modern convolutional object detectors](https://arxiv.org/pdf/1611.10012.pdf)
+gives a good overview about suitable network architectures like SSD, Fast R-CNN, Faster R-CNN and R-FCN and compares each
+of them regarding speed and accuracy. The TL detector shall be able to run in realtime on CARLA. Due to this restriction
+we decided to implement the Region-based Fully Convolutional Network (R-FCN) with ResNet-101 for the feature extractor
+which is a good compromise between speed and accuracy. Details about this model can be found in the paper
+[R-FCN: Object Detection via Region-based Fully Convolutional Networks, Jifeng Dai Yi (Microsoft Research), Li∗ Kaiming (Tsinghua University), He Jian Sun (Microsoft Research)](https://arxiv.org/pdf/1605.06409.pdf).
 
 We started with a pre-trained R-FCN ResNet-101 model from the [Tensorflow Object-Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). The model has been pre-trained on the [COCO](http://cocodataset.org) dataset and is already able to detect traffic lights on the Bosch Small Traffic Light dataset as shown in the image below.
 
@@ -127,13 +138,17 @@ We applied 3 different datasets. Further details like the individual label posit
 
 #### Data Augmentation
 
-The individual datasets are extremely unbalanced. In the Bosch small traffic light dataset the labeled traffic lights are almost located in the top right quarter of the image, whereas in the Udacity site ROS bag they are located 100% on the left half of the image. Furthermore, the size of the traffic lights and class distribution (red, yellow, green, undefined) vary a lot between the datasets.
+The individual datasets are extremely unbalanced. In the Bosch small traffic light dataset the labeled traffic lights are
+concentrated in the top right quarter of the image, whereas in the Udacity site ROS bag they are located 100% on the left half of the image.
+Furthermore, the size of the traffic lights and class distribution (red, yellow, green, undefined) were inconsistent between the datasets.
 
-To balance the dataset, 65% of the whole dataset has been augmented by the following methods. Each  augmentation method has been combined by its own probability.
+To balance the dataset, 65% of the whole dataset has been augmented by the following methods. Each augmentation was exclusively
+performed with the listed probability.
 
-- random translation: tx_max=+/-70, ty_max=+70, probability=20%
-- random horizontal flip, probability=50%
-- random brightness, probability=20%
+|   Name    |  Probability |
+| Random Translation: tx_max=+/-70, ty_max=+70 | 20%
+| Random Horizontal flip | 50%
+| Random Brightness | 20%
 
 For the model training process we implemented a generator which theoretically generates a endless number of images with random augmentation. The following graphs show the total and the individual class label (red, yellow, green and undefined) position distribution after image augmentation. In total we generated 15000 images for the model training and split them into a 90% training and 10% validation dataset.
 
