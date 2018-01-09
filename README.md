@@ -39,12 +39,12 @@ The project was developed on Ubunutu 16.04, and ROS Kinetic Kame
 The code follows the below architecture (image provided by Udacity)
 ![System Architecture][system_architecture]
 
-As evidenced in the image, the code is broken into *Perception*, *Planing*, and *Control* blocks which receive data from
+As evidenced in the image, the code is broken into **Perception**, **Planing**, and **Control** blocks which receive data from
 and push data to a Car/Simulator.
 
-#### Perception
+#### *Perception*
  The perception block is responsible for observing and processing data from the environment around the vehicle. It consists
- largely of two nodes, *Traffic Light Detection* and *Object Detection*, which are responsible for using the dashboard
+ largely of two nodes, **Traffic Light Detection** and **Object Detection**, which are responsible for using the dashboard
  camera (dashcam) to detect relevant objects.
 
 ##### Traffic Light Detection
@@ -57,10 +57,10 @@ and push data to a Car/Simulator.
  Obstacle detection is currently unimplemented, though could be implemented by broadining the number of classes detected
  by the image processing model.
 
-#### Planing
+#### *Planing*
  The planning block is responsible to determining the path and speed of the vehicle. An orriginal course is plotted from
  starting point to destination, and is updated in real time based off information received from the Perception block. This
- is done using the *Waypoint Loader* and *Waypoint Updater* Nodes.
+ is done using the **Waypoint Loader** and **Waypoint Updater** Nodes.
 
 ##### Waypoint Loader
  Waypoint loader is responsible for retrieving the intial waypoints from a file stored in the /data directory. The file
@@ -74,11 +74,11 @@ and push data to a Car/Simulator.
  the vehicle should be at for each of those waypoints. This is done by taking in localization information from the car/simulator
  and traffic light data from the *Perception* block; this data is then processed in order to determine at which waypoints
  the car should stop next (if it should stop), and at what speeds should the car be going at preceding waypoints to stop
- safely and comfortably. These waypoints are then passed to the *Control* block by publishing to the /final_waypoints topic.
+ safely and comfortably. These waypoints are then passed to the **Control** block by publishing to the /final_waypoints topic.
 
-#### Control
+#### *Control*
  The control block is responsible for interfacing the vehicle Drive By Wire (DBW) commands and the desired waypoint locations
- and speeds. This block consists of the *DBW* and *Waypoint Follower* Nodes.
+ and speeds. This block consists of the **DBW* and **Waypoint Follower** Nodes.
 
 ##### DBW Node
  DBW is responsible for taking in the current velocity of the car, current car position, suggested linear velocity, suggested
