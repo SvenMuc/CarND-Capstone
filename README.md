@@ -146,9 +146,10 @@ To balance the dataset, 65% of the whole dataset has been augmented by the follo
 performed with the listed probability.
 
 |   Name    |  Probability |
-| Random Translation: tx_max=+/-70, ty_max=+70 | 20%
-| Random Horizontal flip | 50%
-| Random Brightness | 20%
+|:----------|:---------------|
+| Random Translation: tx_max=+/-70, ty_max=+70 | 20%|
+| Random Horizontal flip | 50%|
+| Random Brightness | 20%|
 
 For the model training process we implemented a generator which theoretically generates a endless number of images with random augmentation. The following graphs show the total and the individual class label (red, yellow, green and undefined) position distribution after image augmentation. In total we generated 15000 images for the model training and split them into a 90% training and 10% validation dataset.
 
