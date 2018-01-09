@@ -15,9 +15,14 @@ This is the project repo for the final project of the Udacity Self-Driving Car N
 
 
 ### Project Overview
-This project consists of ROSNodes that collect telemetry and camera data in order to drive through waypoints on a road.
-The system adapts to changing traffic patterns in order to have the vehicle arrive safely at it's destination.
 
+This project uses ROS and python in order to implement a waypoint follower for an autonomous vehicle. The vehicle uses an
+image recognition model developed with tensorflow to detect traffic lights from a dashboard mounted camera, and will adapt
+behaviour accordingly. The vehicle has a maximum set speed of 25 mp/h, and can be switched from back and forth from manual
+to autonomous driving.
+
+Additionally, the code was developed and tested on a simulator, and will be further tested on Udacity's self driving
+vehicle, Carla.
 
 
 ### Project Architecture
