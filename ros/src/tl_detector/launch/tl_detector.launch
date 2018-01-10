@@ -2,5 +2,6 @@
 <launch>
     <node pkg="tl_detector" type="tl_detector.py" name="tl_detector" output="screen" cwd="node"/>
 
+    <param name="site" type="bool" value="False"/>
     <param name="debug_tl_detector" type="bool" value="False"/>
 </launch>

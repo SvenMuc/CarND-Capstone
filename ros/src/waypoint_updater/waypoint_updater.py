@@ -28,7 +28,7 @@ TODO (for Yousuf and Aaron): Stopline location for each traffic light.
 
 LOOKAHEAD_WPS = 50  # Number of waypoints we will publish.
 STOP_LINE_THRESHOLD = 30.0  # Number of waypoints between the stop line and the traffic lights
-MAX_ACCE = 1.0
+MAX_ACCE = 2.0
 
 # True for Ground Truth Traffic Data
 # False for Model Prediction Traffic Data
@@ -46,10 +46,9 @@ class WaypointUpdater(object):
         # TODO: Add a subscriber for /traffic_waypoint and /obstacle_waypoint below
 
         rospy.Subscriber('/vehicle/traffic_lights', TrafficLightArray, self.traffic_cb, queue_size=2)
-        rospy.Subscriber('/traffic_waypoint', Int32, self.traffic_light_cb, queue_size=1 )
+        rospy.Subscriber('/traffic_waypoint', Int32, self.traffic_light_cb, queue_size=1)
 
-
-        self.final_waypoints_pub = rospy.Publisher('final_waypoints', Lane, queue_size=1)
+        self.final_waypoints_pub = rospy.Publisher('final_waypoints', Lane, queue_size=LOOKAHEAD_WPS)
 
         # Node-wide variables
         self.base_waypoints = None
@@ -66,7 +65,7 @@ class WaypointUpdater(object):
         self.current_pos = None
         self.current_velocity = None
         self.max_speed_mps = self.kmph2mps(rospy.get_param('~velocity'))
-        #rospy.logdebug("Max speed in mps: {}".format(self.max_speed_mps))
+        # rospy.logdebug("Max speed in mps: {}".format(self.max_speed_mps))
 
         rospy.spin()
 
@@ -140,7 +139,7 @@ class WaypointUpdater(object):
                                 self.red_traffic_light_waypoint_idx - self.closest_waypoint_idx,
                                 dist_to_stop_line))
                         '''
-                        if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD*3):
+                        if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD * 3):
                             # dist = self.distance(self.base_waypoints.waypoints, j_mod, j_mod + 2)
                             if self.current_velocity < 0.1:
                                 vel = 0.0
@@ -148,18 +147,17 @@ class WaypointUpdater(object):
                                 if 0 < dist_to_stop_line <= (STOP_LINE_THRESHOLD/3):
                                     vel = self.current_velocity * min(1, (dist_to_stop_line / (STOP_LINE_THRESHOLD/3)))
                                 else:
-                                    vel = math.sqrt((- (2 * DECEL * dist_to_stop_line))) - (j * 0.1)
+                                    vel = min(math.sqrt((- (2 * DECEL * dist_to_stop_line))) - (j * 0.1),
+                                              self.max_speed_mps)
                                 if vel < 0.1:
                                     vel = 0.
-                            # rospy.logdebug(
+                            # rospy.logwarn(
                             #     "Current velocity: {} Target velocity: {}".format(self.current_velocity, vel))
                             next_wp.twist.twist.linear.x = vel
-                            '''
-                            rospy.logdebug(
-                                "Stop Next waypoint idx: {}  velocity: {} distance%: {}"
-                                    .format(j, next_wp.twist.twist.linear.x,
-                                            (dist_to_stop_line / (STOP_LINE_THRESHOLD))))
-                            '''
+                            # rospy.logwarn(
+                            #     "Stop Next waypoint idx: {}  velocity: {} distance%: {}"
+                            #         .format(j, next_wp.twist.twist.linear.x,
+                            #                 (dist_to_stop_line / (STOP_LINE_THRESHOLD))))
                         else:
                             next_wp.twist.twist.linear.x = min(self.current_velocity + ((j + 1) * MAX_ACCE),
                                                                self.max_speed_mps)
@@ -214,14 +212,13 @@ class WaypointUpdater(object):
         closest_tl = None
         closest_dist = sys.maxint  # Some big number
 
-
         # If we are using Model Prediction
         if (USE_GT_TRAFFIC_STATE == False):
             # Iterate through all traffic lights
             for i in range(len(traffic_lights)):
                 tl = msg.lights[i]
 
-                #Constantly track the location of the nearest trafficlight
+                # Constantly track the location of the nearest trafficlight
                 ## Grab positional Data on self, then on tl
                 x, y, theta_car, theta_tl = self.convert_local(tl, self.current_pos)
                 dl = lambda a, b: math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)
@@ -241,8 +238,8 @@ class WaypointUpdater(object):
                 # if dist_to_stop_line > -5:  # STOP_LINE_THRESHOLD * 1.5:
                 self.red_traffic_light_waypoint_idx = tl_waypoint_idx
 
-        #If we are using Ground Truth Stoplights
-        elif(USE_GT_TRAFFIC_STATE == True):
+        # If we are using Ground Truth Stoplights
+        elif (USE_GT_TRAFFIC_STATE == True):
             for i in range(len(traffic_lights)):
                 tl = msg.lights[i]
                 if tl.state == TrafficLight.RED or tl.state == TrafficLight.YELLOW:  # Red or Yellow Traffic light
@@ -269,9 +266,8 @@ class WaypointUpdater(object):
             else:
                 self.red_traffic_light_ahead = False
 
-
     def traffic_light_cb(self, msg):
-        #Decode Message
+        # Decode Message
         if (USE_GT_TRAFFIC_STATE == False):
             light_state = msg.data
             # 1 = Undefined, 2 = Red, 3 = Yellow, 4 = Green

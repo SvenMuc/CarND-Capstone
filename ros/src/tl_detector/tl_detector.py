@@ -22,7 +22,7 @@ import threading
 
 from collections import defaultdict
 from io import StringIO
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 from PIL import Image as Img
 
 PATH_TO_SIM_FROZEN_MODEL = "../frozen_inference_graph.pb"
@@ -53,8 +53,13 @@ class TLDetector(object):
             self.pub_image_tl_overlay = rospy.Publisher('/image_tl_overlay', Image, queue_size=1)
         else:
             rospy.loginfo('TL detector debugging disabled. You can activate it in the launch files.')
-        
-        sub6 = rospy.Subscriber('/image_raw', Image, self.image_cb, queue_size = 1, buff_size=2**24)
+
+        site_launch = rospy.get_param('site', False)
+        if site_launch:
+            sub6 = rospy.Subscriber('/image_raw', Image, self.image_cb, queue_size = 1, buff_size=2**24)
+        else:
+            sub6 = rospy.Subscriber('/image_color', Image, self.image_cb, queue_size = 1, buff_size=2**24)
+
         self.upcoming_red_light_pub = rospy.Publisher('/traffic_waypoint', Int32, queue_size=1)
 
         self.camera_image = None
@@ -105,7 +110,6 @@ class TLDetector(object):
             msg (Image): image from car-mounted camera
 
         """
-        
         self.lock_image.acquire()
         self.camera_image = msg
         self.lock_image.release()
@@ -113,7 +117,13 @@ class TLDetector(object):
 
     def process_image(self):
         """" Perform Model Prediction. """
-        
+
+        image_tensor = self.detection_graph.get_tensor_by_name('image_tensor:0')
+        detection_boxes = self.detection_graph.get_tensor_by_name('detection_boxes:0')
+        detection_scores = self.detection_graph.get_tensor_by_name('detection_scores:0')
+        detection_classes = self.detection_graph.get_tensor_by_name('detection_classes:0')
+        num_detections = self.detection_graph.get_tensor_by_name('num_detections:0')
+
         while not rospy.is_shutdown():
             # wait for valid image to process
             if not self.event_has_image.wait(1):
@@ -124,12 +134,6 @@ class TLDetector(object):
             self.lock_image.release()
             image_np = self.load_image_into_numpy_array(image)
             image_np_expanded = np.expand_dims(image_np, axis=0)
-
-            image_tensor = self.detection_graph.get_tensor_by_name('image_tensor:0')
-            detection_boxes = self.detection_graph.get_tensor_by_name('detection_boxes:0')
-            detection_scores = self.detection_graph.get_tensor_by_name('detection_scores:0')
-            detection_classes = self.detection_graph.get_tensor_by_name('detection_classes:0')
-            num_detections = self.detection_graph.get_tensor_by_name('num_detections:0')
 
             # Perform Detection
             time1 = time.time()
@@ -143,8 +147,8 @@ class TLDetector(object):
             #rospy.logerr('scores:')
             #rospy.logerr(scores)
 
-            if delta_time > 1.0:
-                rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
+            # if delta_time > 1.0:
+            # rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
 
             # Publish TL overlay image for debgging if activated in the launch file
             if self.tl_show_detector_results is True:
@@ -166,17 +170,19 @@ class TLDetector(object):
                 tl_state_prediction = 1
             tl_state_dict = {1:'Undefined', 2:'Red', 3:'Yellow', 4:'Green'}
 
-            #rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
+            # rospy.logwarn("Traffic State Prediction: {}".format(tl_state_dict[tl_state_prediction]))
             #rospy.logwarn("Traffic State Confidence: {}".format(scores[0][np.argmax(scores)]))
 
             # If the recent state was detected 3/4 of the last detections, publish it
-            state = tl_state_prediction
-            self.state_average.pop(0)
-            self.state_average.append(state)
-            if (self.state_average.count(state) >= 3):
-                pubmsg = Int32()
-                pubmsg.data = tl_state_prediction
-                self.upcoming_red_light_pub.publish(pubmsg)
+
+            pubmsg = Int32()
+            pubmsg.data = tl_state_prediction
+            self.upcoming_red_light_pub.publish(pubmsg)
+
+            # state = tl_state_prediction
+            # self.state_average.pop(0)
+            # self.state_average.append(state)
+            # if (self.state_average.count(state) >= 3):
                 #rospy.logwarn("Traffic Light State Published: {}".format(tl_state_dict[state])
             
             self.event_has_image.clear()
