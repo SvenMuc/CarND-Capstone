@@ -148,7 +148,7 @@ class TLDetector(object):
             #rospy.logerr(scores)
 
             # if delta_time > 1.0:
-            # rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
+            rospy.logwarn('Time for model prediction > 1.0 sec: {} s'.format(delta_time))
 
             # Publish TL overlay image for debgging if activated in the launch file
             if self.tl_show_detector_results is True:
